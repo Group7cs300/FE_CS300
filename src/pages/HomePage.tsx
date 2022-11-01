@@ -1,11 +1,12 @@
-import { Container } from 'react-bootstrap'
-import { Navbar } from '../components'
+import { Discover, LearnEverything, Navbar, Footer } from '../container'
 
 export default function HomePage() {
 	return (
-		<Container>
+		<div>
 			<Navbar />
-			<h1>Home</h1>
-		</Container>
+			<Discover />
+			<LearnEverything />
+			<Footer />
+		</div>
 	)
 }
