@@ -1,4 +1,4 @@
-import { Discover, LearnEverything, Navbar, Footer } from '../container'
+import { Discover, LearnEverything, Navbar, Footer, TaughtBy, BecomeATutor } from '../container'
 
 export default function HomePage() {
 	return (
@@ -6,6 +6,8 @@ export default function HomePage() {
 			<Navbar />
 			<Discover />
 			<LearnEverything />
+			<TaughtBy />
+			<BecomeATutor />
 			<Footer />
 		</div>
 	)

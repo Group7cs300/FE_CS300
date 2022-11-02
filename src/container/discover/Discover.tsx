@@ -1,4 +1,3 @@
-import { Container } from 'react-bootstrap'
 import Image from 'react-bootstrap/Image'
 
 export default function Discover() {
@@ -41,9 +40,7 @@ export default function Discover() {
 					in creativity.
 				</h2>
 			</div>
-			<div>
-				<Image src="/home/main.webp" width="1046" />
-			</div>
+			<Image src="/home/main.webp" width="60%" />
 		</div>
 	)
 }

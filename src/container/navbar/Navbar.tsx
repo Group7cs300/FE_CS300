@@ -15,9 +15,11 @@ export default function Navbar() {
 				<Form className="navbar__search">
 					<Form.Control
 						type="search"
-						placeholder="What course do you want to learn"
+						placeholder="What course do you want to learn?"
 						aria-label="Search"
-						className=''
+						style={{
+							width: 500
+						}}
 					/>
 				</Form>
 				<Nav>
