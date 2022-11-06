@@ -2,7 +2,7 @@ export default function Footer() {
     return (
         <div
             style={{
-                height: 300,
+                height: 150,
                 display: 'flex',
 				background: '#002333',
 				color: 'white',
