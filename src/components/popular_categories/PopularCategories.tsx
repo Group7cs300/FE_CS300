@@ -21,9 +21,9 @@ export default function PopularCategories() {
 		>
 			{categories.map((category) => (
 				<div
-                    key={category}
+					key={category}
 					style={{
-						margin: "25px 50px"
+						margin: '25px 50px',
 					}}
 				>
 					{category}

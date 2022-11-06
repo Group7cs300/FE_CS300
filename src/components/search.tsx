@@ -7,7 +7,10 @@ export default function Search() {
 	const [search_text, setSearchText] = useState('')
 
 	return (
-		<Form onSubmit={() => navigate(`/courses/${search_text}`)} className="navbar__search">
+		<Form
+			onSubmit={() => navigate(`/courses/${search_text}`)}
+			className="navbar__search"
+		>
 			<Form.Control
 				onChange={(e) => {
 					setSearchText(e.target.value)

@@ -4,21 +4,21 @@ export default function TaughtBy() {
 	return (
 		<div
 			style={{
-                display: 'flex',
+				display: 'flex',
 				background: '#002333',
 				color: 'white',
 				flexDirection: 'row',
 				justifyContent: 'space-between',
-				padding: 50
+				padding: 50,
 			}}
 		>
 			<div
-                style={{
+				style={{
 					display: 'flex',
 					flexDirection: 'column',
 					justifyContent: 'center',
 				}}
-            >
+			>
 				<h1>Classes Taught by Qualified creators</h1>
 				<h2>Jessica Hische</h2>
 				<h2>Jessica Hische</h2>

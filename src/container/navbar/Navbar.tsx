@@ -17,7 +17,9 @@ export default function Navbar() {
 	return (
 		<NB className="navbar">
 			<Container>
-				<NB.Brand style={{ color: 'white' }} href="/">meSHARE</NB.Brand>
+				<NB.Brand style={{ color: 'white' }} href="/">
+					meSHARE
+				</NB.Brand>
 				<Search />
 				<Nav>
 					<Nav.Link to="/login" end as={NavLink} style={linkStyle}>

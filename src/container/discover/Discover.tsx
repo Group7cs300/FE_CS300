@@ -22,20 +22,20 @@ export default function Discover() {
 					style={{
 						fontFamily: 'Jacques Francois',
 						fontStyle: 'normal',
-                        fontWeight: 400,
-                        fontSize: 36,
+						fontWeight: 400,
+						fontSize: 36,
 					}}
 				>
 					What Will You Discover?
 				</h1>
 				<h2
-                    style={{
-                        fontFamily: 'Jacques Francois',
+					style={{
+						fontFamily: 'Jacques Francois',
 						fontStyle: 'normal',
-                        fontWeight: 400,
-                        fontSize: 32,
-                    }}
-                >
+						fontWeight: 400,
+						fontSize: 32,
+					}}
+				>
 					Explore new skills, deepen existing passions, and get lost
 					in creativity.
 				</h2>
