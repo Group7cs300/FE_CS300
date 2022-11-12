@@ -4,7 +4,7 @@ import './LearnEverything.css'
 
 export default function LearnEverything() {
 	return (
-		<Container className="learn_everything" style={{ padding: 50 }}>
+		<Container className="learn_everything" style={{ padding: 100 }}>
 			<h1>Learn Everything You Need</h1>
 			<PopularCategories />
 			<PopularCourses />

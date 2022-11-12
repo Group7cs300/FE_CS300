@@ -24,6 +24,7 @@ export default function Discover() {
 						fontStyle: 'normal',
 						fontWeight: 400,
 						fontSize: 36,
+						marginLeft: 40,
 					}}
 				>
 					What Will You Discover?
@@ -33,7 +34,10 @@ export default function Discover() {
 						fontFamily: 'Jacques Francois',
 						fontStyle: 'normal',
 						fontWeight: 400,
-						fontSize: 32,
+						fontSize: 26,
+						marginLeft: 120,
+						marginTop: 40,
+						marginRight: 80,
 					}}
 				>
 					Explore new skills, deepen existing passions, and get lost
