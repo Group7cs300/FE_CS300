@@ -1,50 +1,49 @@
+import { Col, Container, Row } from 'react-bootstrap'
 import Image from 'react-bootstrap/Image'
 
 export default function Discover() {
 	return (
-		<div
-			style={{
-				display: 'flex',
-				flexDirection: 'row',
-				justifyContent: 'space-between',
-				margin: 0,
-				marginTop: 50,
-			}}
-		>
-			<div
-				style={{
-					display: 'flex',
-					flexDirection: 'column',
-					justifyContent: 'center',
-				}}
-			>
-				<h1
+		<Container style={{ paddingTop: 20 }}>
+			<Row xs={1} sm={2}>
+				<Col
 					style={{
-						fontFamily: 'Jacques Francois',
-						fontStyle: 'normal',
-						fontWeight: 400,
-						fontSize: 36,
-						marginLeft: 40,
+						display: 'flex',
+						alignItems: 'center',
+						flexDirection: 'column',
+						justifyContent: 'center',
+						padding: 30
 					}}
 				>
-					What Will You Discover?
-				</h1>
-				<h2
-					style={{
-						fontFamily: 'Jacques Francois',
-						fontStyle: 'normal',
-						fontWeight: 400,
-						fontSize: 26,
-						marginLeft: 120,
-						marginTop: 40,
-						marginRight: 80,
-					}}
-				>
-					Explore new skills, deepen existing passions, and get lost
-					in creativity.
-				</h2>
-			</div>
-			<Image src="/home/main.webp" width="60%" />
-		</div>
+					<h1
+						style={{
+							textAlign: 'center',
+
+							fontFamily: 'Jacques Francois',
+							fontStyle: 'normal',
+							fontWeight: 400,
+							fontSize: 30,
+						}}
+					>
+						What Will You Discover?
+					</h1>
+					<h2
+						style={{
+							textAlign: 'center',
+
+							fontFamily: 'Jacques Francois',
+							fontStyle: 'normal',
+							fontWeight: 400,
+							fontSize: 27,
+						}}
+					>
+						Explore new skills, deepen existing passions, and get
+						lost in creativity.
+					</h2>
+				</Col>
+				<Col>
+					<Image src="/home/main.webp" width={'100%'} />
+				</Col>
+			</Row>
+		</Container>
 	)
 }

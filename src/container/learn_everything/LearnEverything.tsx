@@ -1,13 +1,21 @@
 import { Container } from 'react-bootstrap'
 import { PopularCategories, PopularCourses } from '../../components'
-import './LearnEverything.css'
 
 export default function LearnEverything() {
 	return (
-		<Container className="learn_everything" style={{ padding: 100 }}>
+		<div
+			className="learn_everything"
+			style={{
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'center',
+				alignItems: 'center',
+				marginTop: 30
+			}}
+		>
 			<h1>Learn Everything You Need</h1>
 			<PopularCategories />
 			<PopularCourses />
-		</Container>
+		</div>
 	)
 }

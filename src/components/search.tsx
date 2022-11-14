@@ -10,17 +10,17 @@ export default function Search() {
 		<Form
 			onSubmit={() => navigate(`/courses/${search_text}`)}
 			className="navbar__search"
+			style={{
+				width: '100%',
+			}}
 		>
 			<Form.Control
 				onChange={(e) => {
 					setSearchText(e.target.value)
 				}}
-				type="search"
+				type="text"
 				placeholder="What course do you want to learn?"
 				aria-label="Search"
-				style={{
-					width: 500,
-				}}
 			/>
 		</Form>
 	)
