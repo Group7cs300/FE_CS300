@@ -23,7 +23,7 @@ export default function PopularCategories() {
 				<div
 					key={category}
 					style={{
-						margin: '25px 50px',
+						
 					}}
 				>
 					{category}
