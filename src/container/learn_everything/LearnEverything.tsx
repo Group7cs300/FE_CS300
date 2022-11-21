@@ -10,7 +10,7 @@ export default function LearnEverything() {
 				flexDirection: 'column',
 				justifyContent: 'center',
 				alignItems: 'center',
-				marginTop: 30
+				marginTop: 100,
 			}}
 		>
 			<h1>Learn Everything You Need</h1>
