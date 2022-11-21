@@ -14,15 +14,38 @@ export default function BecomeATutor() {
 						alignItems: 'center',
 						flexDirection: 'column',
 						justifyContent: 'center',
-						paddingBottom: 30
+						paddingBottom: 30,
 					}}
 				>
-					<h1 style={{ textAlign: 'center' }}>Become a tutor</h1>
-					<h2 style={{ textAlign: 'center' }}>
+					<h1 style={{ textAlign: 'center', marginBottom: '5%' }}>
+						Become a tutor
+					</h1>
+					<h2
+						style={{
+							textAlign: 'left',
+							fontSize: 22,
+							width: '50%',
+							marginRight: '30%',
+						}}
+					>
 						If you have experiment of some topic connect to our for
 						become tutor. Then earn income by that.
 					</h2>
-					<Button>Start teaching today</Button>
+					<h2
+						style={{
+							textAlign: 'left',
+							fontSize: 22,
+							width: '50%',
+							marginLeft: '30%',
+							marginTop: '3%',
+						}}
+					>
+						We provide the extensions for you to teach what you
+						love.
+					</h2>
+					<Button style={{ background: '#002333', marginTop: '5%' }}>
+						Start teaching today
+					</Button>
 				</Col>
 			</Row>
 		</Container>
