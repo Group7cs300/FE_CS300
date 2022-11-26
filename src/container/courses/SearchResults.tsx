@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {Container} from 'react-bootstrap'
-import DropdownMenu from '../../components/DropDown/DropDown'
-import SortBy from '../../components/SortBy/SortBy'
+import DropdownMenu from '../../components/courses/DropDown'
+import SortBy from '../../components/courses/SortBy'
 
 
 

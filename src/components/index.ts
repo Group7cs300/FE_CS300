@@ -1,4 +1,4 @@
-import PopularCategories from './popular_categories/PopularCategories'
-import PopularCourses from './popular_courses/PopularCourses'
+import PopularCategories from './home/PopularCategories'
+import PopularCourses from './home/PopularCourses'
 
 export { PopularCategories, PopularCourses }

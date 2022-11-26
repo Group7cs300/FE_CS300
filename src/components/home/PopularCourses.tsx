@@ -1,5 +1,5 @@
 import { Carousel, Container } from 'react-bootstrap'
-import CoursesGroup from '../courses_group/CoursesGroup'
+import CoursesGroup from './CoursesGroup'
 
 export default function PopularCourses() {
 	return (

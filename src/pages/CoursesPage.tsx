@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Container, Row, Col, Stack } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import client from '../client/axios'
-import CourseGrid from '../components/courses_grid/CourseGrid'
+import CourseGrid from '../components/courses/CourseGrid'
 import { Footer, Navbar } from '../container'
-import Filter from '../container/SearchResults/SearchResults'
-import { CountResults } from '../container/SearchResults/SearchResults'
+import Filter from '../container/courses/SearchResults'
+import { CountResults } from '../container/courses/SearchResults'
 
 export default function CoursesPage() {
 	interface Course {
@@ -16,9 +16,7 @@ export default function CoursesPage() {
 	const [page, setPage] = useState(1)
 	const [courses, setCourses] = useState<Course[]>([])
 	const [count, setCount] = useState(0)
-	// useEffect(() => {
-		
-	// }, [])
+
 
 	useEffect(() => {
 		async function fetchCourses(page: number) {
@@ -37,7 +35,6 @@ export default function CoursesPage() {
 
 		fetchCourses(page)
 	}, [page])
-	console.log(page)
 	return (
 		<div
 			style={{
@@ -54,7 +51,6 @@ export default function CoursesPage() {
 					<Filter/>
 					<CourseGrid courses={courses} page={page} setPage={setPage}/>
 				</div>
-				<hr />
 			</Container>
 			<Footer />
 		</div>

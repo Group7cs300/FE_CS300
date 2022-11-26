@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { Card, Col, Container, Pagination, Row } from 'react-bootstrap'
+import { Card, Col, Pagination, Row } from 'react-bootstrap'
 
 export function CourseCard({ props, course }: any) {
 	if (course == '') {

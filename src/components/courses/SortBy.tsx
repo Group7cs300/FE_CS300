@@ -1,6 +1,6 @@
 import { Container, Form } from 'react-bootstrap'
 import { propTypes } from 'react-bootstrap/esm/Image'
-import DropdownMenu from '../DropDown/DropDown'
+import DropdownMenu from './DropDown'
 
 export default function SortBy(props: any) {
 	const typeSort = props.listElements
