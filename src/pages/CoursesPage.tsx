@@ -13,11 +13,16 @@ export default function CoursesPage() {
 		name: string
 	}
 	const { search_text } = useParams()
+	const [page, setPage] = useState(1)
 	const [courses, setCourses] = useState<Course[]>([])
 	const [count, setCount] = useState(0)
+	// useEffect(() => {
+		
+	// }, [])
+
 	useEffect(() => {
-		async function fetchCourses() {
-			const { data } = await client.get('/course')
+		async function fetchCourses(page: number) {
+			const { data } = await client.get(`/course?page=${page}&limit=9`)
 			setCount(data.length)
 			let grid: any[] = []
 			for (const [index, course] of data.entries()) {
@@ -30,9 +35,9 @@ export default function CoursesPage() {
 			setCourses(grid)
 		}
 
-		fetchCourses()
-	}, [])
-
+		fetchCourses(page)
+	}, [page])
+	console.log(page)
 	return (
 		<div
 			style={{
@@ -45,21 +50,11 @@ export default function CoursesPage() {
 			<Container style={{ flex: 1 }}>
 				<CountResults search_text={search_text} count={count} />
 				<hr />
-				<Stack
-					direction="horizontal"
-					gap={5}
-					style={{ alignItems: 'start', padding:20 }}
-				>
-					<div style={{ width: '10%' }}>
-						<Filter></Filter>
-					</div>
-					<div
-						className="ms-auto "
-						style={{ width: '70%' }}
-					>
-						<CourseGrid courses={courses}></CourseGrid>
-					</div>
-				</Stack>
+				<div className='container d-flex flex-row justify-content-between'>
+					<Filter/>
+					<CourseGrid courses={courses} page={page} setPage={setPage}/>
+				</div>
+				<hr />
 			</Container>
 			<Footer />
 		</div>
