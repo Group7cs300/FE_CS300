@@ -9,10 +9,7 @@ export default function Search() {
 	return (
 		<Form
 			onSubmit={() => navigate(`/courses/${search_text}`)}
-			className="navbar__search"
-			style={{
-				width: '100%',
-			}}
+			className="w-100"
 		>
 			<Form.Control
 				onChange={(e) => {
