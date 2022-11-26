@@ -1,9 +1,6 @@
-import React, { useState } from 'react'
 import {Container} from 'react-bootstrap'
 import DropdownMenu from '../../components/courses/DropDown'
 import SortBy from '../../components/courses/SortBy'
-
-
 
 export default function Filter() {
 	const create_within_choices = [
@@ -36,11 +33,4 @@ export default function Filter() {
 		</div>
 	)
 }
-export function CountResults(props: any): JSX.Element {
-	return (
-		<Container style={{ padding: 50, paddingBottom: 20 }}>
-			<h2>{props.search_text}</h2>
-			<h5 className="text-muted">{props.count} Results</h5>
-		</Container>
-	)
-}
+
