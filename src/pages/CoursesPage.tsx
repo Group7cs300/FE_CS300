@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import client from '../client/axios'
 import CourseGrid from '../container/courses/CourseGrid'
 import { Footer, Navbar } from '../container'
-import CountResults from '../container/courses/CountResults'
+import CountResults from '../components/courses/CountResults'
 import Filter from '../container/courses/Filter'
 
 export default function CoursesPage() {
@@ -14,7 +14,7 @@ export default function CoursesPage() {
 	}
 
 	interface CoursesResult {
-		count: number,
+		count: number
 		results: Course[]
 	}
 
@@ -22,10 +22,15 @@ export default function CoursesPage() {
 	const [page, setPage] = useState(1)
 	const [courses, setCourses] = useState<Course[]>([])
 	const [count, setCount] = useState(0)
+	const [date_filter, setDate_filter] = useState('All')
+	const [level_filter, setLevel_filter] = useState('All')
+	const [sort_direction, setSort_direction] = useState('Max to Min')
 
 	useEffect(() => {
 		async function fetchCourses(page: number) {
-			const { data } = await client.get<CoursesResult>(`/course?page=${page}&limit=9`)
+			const { data } = await client.get<CoursesResult>(
+				`/course?page=${page}&limit=9`
+			)
 			setCount(data.count)
 			setCourses(data.results)
 		}
@@ -43,9 +48,21 @@ export default function CoursesPage() {
 			<Container style={{ flex: 1 }}>
 				<CountResults search_text={search_text} count={count} />
 				<hr />
-				<div className='container d-flex flex-row justify-content-between'>
-					<Filter/>
-					<CourseGrid courses={courses} totalCourses={count} page={page} setPage={setPage}/>
+				<div className="container d-flex flex-row justify-content-between">
+					<Filter
+						date_filter={date_filter}
+						setDate_filter={setDate_filter}
+						price_filter={level_filter}
+						setPrice_filter={setLevel_filter}
+						sort_direction={sort_direction} 
+						setSort_direction={setSort_direction}
+					/>
+					<CourseGrid
+						courses={courses}
+						totalCourses={count}
+						page={page}
+						setPage={setPage}
+					/>
 				</div>
 				<hr />
 			</Container>

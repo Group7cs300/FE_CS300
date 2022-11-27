@@ -9,11 +9,9 @@ export function PageNumber({ props, totalPage, page, setPage }: any) {
 	return (
 		<div>
 			<Pagination className="justify-content-center">
-				{page > 1 && <Pagination.First onClick={() => setPage(1)} />}
-				{page > 1 && (
-					<Pagination.Prev onClick={() => setPage(page - 1)} />
-				)}
-				{page > 2 && (
+				<Pagination.First disabled={page==1} onClick={() => setPage(1)} />
+				<Pagination.Prev disabled={page==1} onClick={() => setPage(page - 1)} />
+				{page > 2 && page == totalPage && (
 					<Pagination.Item onClick={() => setPage(page - 2)}>
 						{' '}
 						{page - 2}
@@ -25,22 +23,19 @@ export function PageNumber({ props, totalPage, page, setPage }: any) {
 					</Pagination.Item>
 				)}
 				<Pagination.Item active>{page}</Pagination.Item>
-				{page < 3 && page < totalPage && (
+				{page < totalPage && (
 					<Pagination.Item onClick={() => setPage(page + 1)}>
 						{page + 1}
 					</Pagination.Item>
 				)}
-				{page < 2 && page + 1 < totalPage && (
+				{page < 2 && (
 					<Pagination.Item onClick={() => setPage(page + 2)}>
 						{page + 2}
 					</Pagination.Item>
 				)}
-				{page < totalPage && (
-					<Pagination.Next onClick={() => setPage(page + 1)} />
-				)}
-				{page < totalPage && (
-					<Pagination.Last onClick={() => setPage(totalPage)} />
-				)}
+					<Pagination.Next disabled={page==totalPage} onClick={() => setPage(page + 1)} />
+					<Pagination.Last disabled={page==totalPage} onClick={() => setPage(totalPage)} />
+
 			</Pagination>
 		</div>
 	)

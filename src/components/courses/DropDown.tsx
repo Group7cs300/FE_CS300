@@ -1,9 +1,8 @@
 import { useState } from "react"
 import { ButtonGroup, Dropdown, DropdownButton } from "react-bootstrap"
 
-export default function DropdownMenu({ props,choices,default_choice}: any) {
-	const [choiceText, setchoiceText] = useState(default_choice)
-	const choiceAction = (event: any) => setchoiceText(event)
+export default function DropdownMenu({ props,choices,default_choice,setChoice}: any) {
+	const choiceAction = (event: any) => setChoice(event)
 	return (
 		<>
 			<style type="text/css">
@@ -28,7 +27,7 @@ export default function DropdownMenu({ props,choices,default_choice}: any) {
 			<div className="p-3">
 			<DropdownButton
 				align={{ lg: 'start' }}
-				title={choiceText}
+				title={default_choice}
 				id="dropdown-menu-align-responsive-1"
 				variant="flat"
 				onSelect={choiceAction}

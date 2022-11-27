@@ -1,16 +1,18 @@
 import { Container, Form } from 'react-bootstrap'
 import { propTypes } from 'react-bootstrap/esm/Image'
-import DropdownMenu from './DropDown'
+import DropdownMenu from '../courses/DropDown'
 
-export default function SortBy(props: any) {
-	const typeSort = props.listElements
+export default function SortBy({listElements, sort_direction, setSort_direction}: any) {
     const sort_choices = [
-		'Min to Max',
 		'Max to Min',
+		'Min to Max',
 	]
+	function setType(){
+		console.log("hi")
+	}
 	return (
 		<Container className="pt-2">
-			{typeSort.map((elememt: any, id: any) => {
+			{listElements.map((elememt: any, id: any) => {
 				return (
 					<Form key={id}>
 						<div
@@ -21,13 +23,14 @@ export default function SortBy(props: any) {
 								type="checkbox"
 								id="checkbox-2"
 								label={elememt}
+								onClick={setType}
 							/>
 						</div>
 					</Form>
 				)
 			})}
             <div>
-                <DropdownMenu default_choice={sort_choices[0]} choices={sort_choices}/>
+                <DropdownMenu default_choice={sort_direction} setChoice={setSort_direction} choices={sort_choices}/>
             </div>
 		</Container>
 	)
