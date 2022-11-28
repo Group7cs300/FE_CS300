@@ -25,17 +25,18 @@ export default function CoursesPage() {
 	const [date_filter, setDate_filter] = useState('All')
 	const [level_filter, setLevel_filter] = useState('All')
 	const [sort_direction, setSort_direction] = useState('Max to Min')
-
+	const [currentSort,setCurrentSort] = useState(0)
 	useEffect(() => {
-		async function fetchCourses(page: number) {
+		async function fetchCourses() {
 			const { data } = await client.get<CoursesResult>(
 				`/course?page=${page}&limit=9`
 			)
 			setCount(data.count)
 			setCourses(data.results)
+			console.log(date_filter,level_filter)
 		}
-		fetchCourses(page)
-	}, [page])
+		fetchCourses()
+	}, [page,date_filter,level_filter])
 	return (
 		<div
 			style={{
@@ -56,6 +57,8 @@ export default function CoursesPage() {
 						setPrice_filter={setLevel_filter}
 						sort_direction={sort_direction} 
 						setSort_direction={setSort_direction}
+						currentSort={currentSort}
+						setCurrentSort={setCurrentSort}
 					/>
 					<CourseGrid
 						courses={courses}

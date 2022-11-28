@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Container } from 'react-bootstrap'
 import DropdownMenu from '../../components/courses/DropDown'
 import SortBy from '../../components/courses/SortBy'
@@ -9,6 +10,8 @@ export default function Filter({
 	setPrice_filter,
 	sort_direction,
 	setSort_direction,
+	currentSort,
+	setCurrentSort
 }: any) {
 	const create_within_choices = [
 		'All',
@@ -17,7 +20,7 @@ export default function Filter({
 		'In this year',
 	]
 	const level_choices = ['All', 'Beginner', 'Medium', 'Advanced']
-	const list_sortBy = ['RATE', 'POPULAR', 'PRICE']
+	
 	return (
 		<div className="col col-sm-3">
 			<div className="fw-bold fs-2">Filters</div>
@@ -41,9 +44,10 @@ export default function Filter({
 			{/* ------------------------------ */}
 			<div className="fw-bold fs-2 pt-3">Sort By</div>
 			<SortBy
-				listElements={list_sortBy}
 				sort_direction={sort_direction}
 				setSort_direction={setSort_direction}
+				currentSort={currentSort}
+				setCurrentSort={setCurrentSort}
 			/>
 		</div>
 	)

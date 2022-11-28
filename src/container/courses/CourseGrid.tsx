@@ -17,7 +17,6 @@ export default function CourseGrid({
 
 		while (courses.length > 0) grid.push(courses.splice(0, 3))
 		setDisplayCourses(grid)
-		console.log(courses.length)
 	}, [courses])
 
 	return (

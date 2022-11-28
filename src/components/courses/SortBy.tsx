@@ -1,34 +1,26 @@
+import { useEffect, useState } from 'react'
 import { Container, Form } from 'react-bootstrap'
 import { propTypes } from 'react-bootstrap/esm/Image'
 import DropdownMenu from '../courses/DropDown'
+import CheckBox from './CheckBox'
 
-export default function SortBy({listElements, sort_direction, setSort_direction}: any) {
+export default function SortBy({currentSort,setCurrentSort,sort_direction, setSort_direction}: any) {
     const sort_choices = [
 		'Max to Min',
 		'Min to Max',
 	]
-	function setType(){
-		console.log("hi")
+	console.log(currentSort)
+	function Checked(id: Number){
+		
+		if(id == currentSort)
+			return true
+		return false
 	}
 	return (
 		<Container className="pt-2">
-			{listElements.map((elememt: any, id: any) => {
-				return (
-					<Form key={id}>
-						<div
-							key={`default-checkbox`}
-							className="form-check p-0 mb-3"
-						>
-							<Form.Check
-								type="checkbox"
-								id="checkbox-2"
-								label={elememt}
-								onClick={setType}
-							/>
-						</div>
-					</Form>
-				)
-			})}
+				<CheckBox lable_name='RATE' checked={Checked(1)} id='1' setChecked={setCurrentSort}></CheckBox>
+				<CheckBox lable_name='POPULAR' checked={Checked(2)} id='2' setChecked={setCurrentSort}></CheckBox>
+				<CheckBox lable_name='PRICE' checked={Checked(3)} id='3' setChecked={setCurrentSort}></CheckBox>
             <div>
                 <DropdownMenu default_choice={sort_direction} setChoice={setSort_direction} choices={sort_choices}/>
             </div>
