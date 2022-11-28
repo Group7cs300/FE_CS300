@@ -1,22 +1,22 @@
 interface CheckBoxProps {
     lable_name:string,
     id:string,
-    checked:boolean,
+    check:boolean,
     setChecked:any
 }
 
-export default function CheckBox({lable_name, id, checked, setChecked}:CheckBoxProps){
+export default function CheckBox({lable_name, id, check, setChecked}:CheckBoxProps){
 
 
     function setStateCheck(){
-        console.log(checked)
-        if(checked==true)
+        console.log(check)
+        if(check==true)
             setChecked(0)
         setChecked(Number(id))
     }
     return(
         <div className='form-check'>
-        <input type="checkbox" className='form-check-input' onClick={setStateCheck} checked={checked}/>
+        <input type="checkbox" className='form-check-input' onChange={setStateCheck} checked={check}/>
         <label className="form-check-label">{lable_name}</label>
         </div>
     )

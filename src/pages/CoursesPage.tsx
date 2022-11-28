@@ -33,10 +33,10 @@ export default function CoursesPage() {
 			)
 			setCount(data.count)
 			setCourses(data.results)
-			console.log(date_filter,level_filter)
+			console.log('date' , date_filter, '\nlevel' ,level_filter, '\nsort type', currentSort, '\ndirection', sort_direction)
 		}
 		fetchCourses()
-	}, [page,date_filter,level_filter])
+	}, [page,date_filter,level_filter,currentSort,sort_direction])
 	return (
 		<div
 			style={{

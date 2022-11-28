@@ -9,7 +9,6 @@ export default function SortBy({currentSort,setCurrentSort,sort_direction, setSo
 		'Max to Min',
 		'Min to Max',
 	]
-	console.log(currentSort)
 	function Checked(id: Number){
 		
 		if(id == currentSort)
@@ -18,9 +17,9 @@ export default function SortBy({currentSort,setCurrentSort,sort_direction, setSo
 	}
 	return (
 		<Container className="pt-2">
-				<CheckBox lable_name='RATE' checked={Checked(1)} id='1' setChecked={setCurrentSort}></CheckBox>
-				<CheckBox lable_name='POPULAR' checked={Checked(2)} id='2' setChecked={setCurrentSort}></CheckBox>
-				<CheckBox lable_name='PRICE' checked={Checked(3)} id='3' setChecked={setCurrentSort}></CheckBox>
+				<CheckBox lable_name='RATE' check={Checked(1)} id='1' setChecked={setCurrentSort}></CheckBox>
+				<CheckBox lable_name='POPULAR' check={Checked(2)} id='2' setChecked={setCurrentSort}></CheckBox>
+				<CheckBox lable_name='PRICE' check={Checked(3)} id='3' setChecked={setCurrentSort}></CheckBox>
             <div>
                 <DropdownMenu default_choice={sort_direction} setChoice={setSort_direction} choices={sort_choices}/>
             </div>
