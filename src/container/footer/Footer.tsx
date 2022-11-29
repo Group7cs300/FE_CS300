@@ -14,6 +14,7 @@ let linkStyle = {
 
 export default function Footer() {
 	return (
+		<footer>
 		<div style={{ height: 250, background: '#002333', color: 'white' }}>
 			<div
 				style={{
@@ -102,5 +103,6 @@ export default function Footer() {
 			</div>
 			<div id="rectangle"></div>
 		</div>
+		</footer>
 	)
 }

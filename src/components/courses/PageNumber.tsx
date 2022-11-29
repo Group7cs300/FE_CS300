@@ -28,7 +28,7 @@ export function PageNumber({ props, totalPage, page, setPage }: any) {
 						{page + 1}
 					</Pagination.Item>
 				)}
-				{page < 2 && (
+				{page < 2 && page + 1 < totalPage &&(
 					<Pagination.Item onClick={() => setPage(page + 2)}>
 						{page + 2}
 					</Pagination.Item>
