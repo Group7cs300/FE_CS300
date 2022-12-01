@@ -11,13 +11,50 @@ export default function CoursesPage() {
 	interface Course {
 		uuid: number
 		name: string
+		tutor: any
+		cover_image: string
 	}
 
 	interface CoursesResult {
 		count: number
 		results: Course[]
 	}
-
+	const date = new Date()
+	function getDateFilter(date_filter: any){
+		if (date_filter == 'All')
+			return ''
+		if (date_filter == 'In this week')
+			if(Number(date.getDate()) > 7 )
+				return String(date.getFullYear()) +'-'+String(date.getMonth()+1)+'-' + String(Number(date.getDate()) - 7)
+			else
+				return String(date.getFullYear()) +'-'+String(date.getMonth())+'-' + String(30 + Number(date.getDate()) -  Number(date.getDay()))
+		if (date_filter == 'In this month')
+			return String(date.getFullYear()) +'-'+String(date.getMonth()+1)+'-1'
+		if (date_filter == 'In this year')
+			return String(date.getFullYear()) +'-1-1'
+	}
+	function getTypeSort(currentSort: any,sort_direction:any)
+	{
+		if(currentSort == 0)
+			return 'null'
+		if(sort_direction == 'Max to Min')
+		{
+			switch (currentSort){
+				case 1: return '-rate'
+				case 2: return '-popular'
+				case 3: return '-price'
+			}		
+		}
+		if(sort_direction == 'Max to Min')
+		{
+			switch (currentSort){
+				case 1: return 'rate'
+				case 2: return 'popular'
+				case 3: return 'price'
+			}
+		}			
+	}
+	
 	const { search_text } = useParams()
 	const [page, setPage] = useState(1)
 	const [courses, setCourses] = useState<Course[]>([])
@@ -29,7 +66,7 @@ export default function CoursesPage() {
 	useEffect(() => {
 		async function fetchCourses() {
 			const { data } = await client.get<CoursesResult>(
-				`/course?page=${page}&limit=9`
+				`/course?name=${search_text}&page=${page}&limit=9&ordering=${getTypeSort(currentSort,sort_direction)}&updated_at__gt=${getDateFilter(date_filter)}`
 			)
 			setCount(data.count)
 			setCourses(data.results)
@@ -37,6 +74,7 @@ export default function CoursesPage() {
 		}
 		fetchCourses()
 	}, [page,date_filter,level_filter,currentSort,sort_direction])
+	
 	return (
 		<div
 			style={{

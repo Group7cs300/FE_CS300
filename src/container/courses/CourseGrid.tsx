@@ -18,7 +18,6 @@ export default function CourseGrid({
 		while (courses.length > 0) grid.push(courses.splice(0, 3))
 		setDisplayCourses(grid)
 	}, [courses])
-
 	return (
 		<div className="col col-xxl-9 col-xl-7 col-lg-8 col-sm-6 col-md-6">
 			<div>
