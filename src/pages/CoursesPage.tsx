@@ -11,6 +11,8 @@ export default function CoursesPage() {
 	interface Course {
 		uuid: number
 		name: string
+		rate: GLfloat
+		popular:number
 		tutor: any
 		cover_image: string
 	}

@@ -12,10 +12,9 @@ export default function CourseCard({props,course}: any) {
 			<Card.Body className="p-0">
 				<div className='d-flex justify-content-between'>
 					<div className="fw-light fs-6 p-1">
-					{' '}
-					{'{'}count{'}'} tutees
+					{course.popular} tutees
 					</div>
-					<div className='ml-auto fw-light fs-6 p-1 px-3'> Rate 4,5/5</div>
+					<div className='ml-auto fw-light fs-6 p-1 px-3'> Rate {course.rate}/5</div>
 				</div>
 				<div className="fw-bold fs-5 px-3">
 					{course.name}
