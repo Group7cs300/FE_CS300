@@ -1,8 +1,11 @@
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
-import { Col, Navbar as NB, Row } from 'react-bootstrap'
-import { NavLink } from 'react-router-dom'
+import { Button, Col, Navbar as NB, Row } from 'react-bootstrap'
+import { NavLink, useNavigate } from 'react-router-dom'
 import Search from '../../components/search'
+import LOCAL_STORAGE_KEYS from '../../constants/local_storage'
+import { useAppSelector, useAppDispatch } from '../../redux/store'
+import { removeToken, removeAccount } from '../../redux/user/slice'
 
 let linkStyle = {
 	display: 'flex',
@@ -11,6 +14,10 @@ let linkStyle = {
 }
 
 export default function Navbar() {
+	const account = useAppSelector((state) => state.user.account)
+	const navigate = useNavigate()
+	const dispatch = useAppDispatch()
+
 	return (
 		<NB
 			className="navbar"
@@ -19,33 +26,65 @@ export default function Navbar() {
 			}}
 		>
 			<Container>
-				<Row style={{width: '100%'}}>
+				<Row style={{ width: '100%' }}>
 					<Col style={{ display: 'flex', alignItems: 'center' }}>
 						<NB.Brand style={{ color: 'white' }} href="/">
 							meSHARE
 						</NB.Brand>
 					</Col>
-					<Col style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+					<Col
+						style={{
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'center',
+						}}
+					>
 						<Search />
 					</Col>
-					<Col style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+					<Col
+						style={{
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'flex-end',
+						}}
+					>
 						<Nav>
-							<Nav.Link
-								to="/signin"
-								end
-								as={NavLink}
-								style={linkStyle}
-							>
-								Log in
-							</Nav.Link>
-							<Nav.Link
-								to="/signup"
-								end
-								as={NavLink}
-								style={linkStyle}
-							>
-								Sign up
-							</Nav.Link>
+							{account ? (
+								<Nav.Link
+									onClick={() => {
+										localStorage.removeItem(
+											LOCAL_STORAGE_KEYS.TOKEN_KEY
+										)
+										dispatch(removeToken())
+										dispatch(removeAccount())
+										navigate('/')
+									}}
+									as={Button}
+									style={linkStyle}
+									className="d-flex align-items-center border-0 text-white"
+								>
+									Đăng xuất
+								</Nav.Link>
+							) : (
+								<>
+									<Nav.Link
+										to="/signin"
+										as={NavLink}
+										style={linkStyle}
+										className="d-flex align-items-center"
+									>
+										Đăng nhập
+									</Nav.Link>
+									<Nav.Link
+										to="/signup"
+										as={NavLink}
+										style={linkStyle}
+										className="d-flex align-items-center"
+									>
+										Đăng ký
+									</Nav.Link>
+								</>
+							)}
 						</Nav>
 					</Col>
 				</Row>
