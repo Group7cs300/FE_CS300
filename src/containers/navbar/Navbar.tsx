@@ -31,7 +31,7 @@ export default function Navbar() {
 					<Col style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
 						<Nav>
 							<Nav.Link
-								to="/login"
+								to="/signin"
 								end
 								as={NavLink}
 								style={linkStyle}

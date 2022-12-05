@@ -5,7 +5,7 @@ import {
 	Footer,
 	TaughtBy,
 	BecomeATutor,
-} from '../container'
+} from '../containers'
 
 export default function HomePage() {
 	return (
