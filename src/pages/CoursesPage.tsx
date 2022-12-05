@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import client from '../client/axios'
-import { Footer, Navbar } from '../container'
+import { Footer, Navbar } from '../containers'
 
 export default function CoursesPage() {
 	interface Course {

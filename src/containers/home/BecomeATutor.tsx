@@ -14,7 +14,7 @@ export default function BecomeATutor() {
 						alignItems: 'center',
 						flexDirection: 'column',
 						justifyContent: 'center',
-						paddingBottom: 30
+						paddingBottom: 30,
 					}}
 				>
 					<h1 style={{ textAlign: 'center' }}>Become a tutor</h1>
