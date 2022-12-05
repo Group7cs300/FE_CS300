@@ -9,25 +9,27 @@ export default function TaughtBy() {
 				background: '#002333',
 				color: 'white',
 				padding: 20,
-				marginTop: 20
+				marginTop: 20,
 			}}
 		>
 			<Row xs={1} sm={2}>
 				<Col
-				style={{
-					display: 'flex',
-					alignItems: 'center',
-					flexDirection: 'column',
-					justifyContent: 'center',
-				}}
+					style={{
+						display: 'flex',
+						alignItems: 'center',
+						flexDirection: 'column',
+						justifyContent: 'center',
+					}}
 				>
 					<Row>
-						<h1 style={{textAlign: 'center',}}>Classes Taught by Qualified creators</h1>
+						<h1 style={{ textAlign: 'center' }}>
+							Classes Taught by Qualified creators
+						</h1>
 					</Row>
 					<Row>
-						<h2 style={{textAlign: 'center',}}>Jessica Hische</h2>
-						<h2 style={{textAlign: 'center',}}>Jessica Hische</h2>
-						<h2 style={{textAlign: 'center',}}>Jessica Hische</h2>
+						<h2 style={{ textAlign: 'center' }}>Jessica Hische</h2>
+						<h2 style={{ textAlign: 'center' }}>Jessica Hische</h2>
+						<h2 style={{ textAlign: 'center' }}>Jessica Hische</h2>
 					</Row>
 				</Col>
 				<Col>

@@ -11,7 +11,7 @@ export default function Discover() {
 						alignItems: 'center',
 						flexDirection: 'column',
 						justifyContent: 'center',
-						padding: 30
+						padding: 30,
 					}}
 				>
 					<h1
