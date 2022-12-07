@@ -1,3 +1,4 @@
+import { Container } from 'react-bootstrap'
 import { PopularCategories, PopularCourses } from '../../components'
 
 export default function LearnEverything() {
@@ -9,7 +10,7 @@ export default function LearnEverything() {
 				flexDirection: 'column',
 				justifyContent: 'center',
 				alignItems: 'center',
-				marginTop: 30,
+				marginTop: 30
 			}}
 		>
 			<h1>Learn Everything You Need</h1>
