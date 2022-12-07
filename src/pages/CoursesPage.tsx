@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Container, Row, Col, Stack } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import client from '../client/axios'
-import CourseGrid from '../container/courses/CourseGrid'
-import { Footer, Navbar } from '../container'
+import CourseGrid from '../containers/courses/CourseGrid'
 import CountResults from '../components/courses/CountResults'
-import Filter from '../container/courses/Filter'
+import Filter from '../containers/courses/Filter'
+import { Footer, Navbar } from '../containers'
 
 export default function CoursesPage() {
 	interface Course {
