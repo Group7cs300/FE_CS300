@@ -4,6 +4,7 @@ import SignInPage from './SignInPage'
 import SignUpPage from './SignUpPage'
 import LoadingPage from './LoadingPage'
 import CoursesPage from './CoursesPage'
+import UserPage from './UserPage'
 
 export {
 	HomePage,
@@ -12,4 +13,5 @@ export {
 	SignUpPage,
 	LoadingPage,
 	CoursesPage,
+	UserPage,
 }

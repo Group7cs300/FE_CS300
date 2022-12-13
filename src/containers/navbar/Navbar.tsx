@@ -2,20 +2,17 @@ import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
 import { Button, Col, Navbar as NB, Row } from 'react-bootstrap'
 import { NavLink, useNavigate } from 'react-router-dom'
-import Search from '../../components/search'
+import Search from '../../components/navbar/search'
 import LOCAL_STORAGE_KEYS from '../../constants/local_storage'
 import { useAppSelector, useAppDispatch } from '../../redux/store'
 import { removeToken, removeAccount } from '../../redux/user/slice'
+import Login from '../../components/navbar/Login'
 
-let linkStyle = {
-	display: 'flex',
-	alignItems: 'center',
-	color: 'white',
-}
+
 
 export default function Navbar() {
 	const account = useAppSelector((state) => state.user.account)
-	const navigate = useNavigate()
+	
 	const dispatch = useAppDispatch()
 
 	return (
@@ -48,45 +45,9 @@ export default function Navbar() {
 							justifyContent: 'flex-end',
 						}}
 					>
-						<Nav>
-							{account ? (
-								<Nav.Link
-									onClick={() => {
-										localStorage.removeItem(
-											LOCAL_STORAGE_KEYS.TOKEN_KEY
-										)
-										dispatch(removeToken())
-										dispatch(removeAccount())
-										navigate('/')
-									}}
-									as={Button}
-									style={linkStyle}
-									className="d-flex align-items-center border-0 text-white"
-								>
-									Đăng xuất
-								</Nav.Link>
-							) : (
-								<>
-									<Nav.Link
-										to="/signin"
-										as={NavLink}
-										style={linkStyle}
-										className="d-flex align-items-center"
-									>
-										Đăng nhập
-									</Nav.Link>
-									<Nav.Link
-										to="/signup"
-										as={NavLink}
-										style={linkStyle}
-										className="d-flex align-items-center"
-									>
-										Đăng ký
-									</Nav.Link>
-								</>
-							)}
-						</Nav>
+						<Login account={account} dispatch={dispatch} ></Login>
 					</Col>
+					
 				</Row>
 			</Container>
 		</NB>

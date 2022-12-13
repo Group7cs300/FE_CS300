@@ -47,7 +47,7 @@ export default function CoursesPage() {
 				case 3: return '-price'
 			}		
 		}
-		if(sort_direction == 'Max to Min')
+		if(sort_direction == 'Min to Max')
 		{
 			switch (currentSort){
 				case 1: return 'rate'
@@ -69,6 +69,8 @@ export default function CoursesPage() {
 		async function fetchCourses() {
 			const { data } = await client.get<CoursesResult>(
 				`/course?name=${search_text}&page=${page}&limit=9&ordering=${getTypeSort(currentSort,sort_direction)}&updated_at__gt=${getDateFilter(date_filter)}`
+			)
+			console.log(`/course?name=${search_text}&page=${page}&limit=9&ordering=${getTypeSort(currentSort,sort_direction)}&updated_at__gt=${getDateFilter(date_filter)}`
 			)
 			setCount(data.count)
 			setCourses(data.results)
