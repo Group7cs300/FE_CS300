@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import client from './client/axios'
+import UploadedCoursesGrid from './containers/user/UploadedCourseGrid'
 import APIS from './constants/api'
 import LOCAL_STORAGE_KEYS from './constants/local_storage'
 import { Account } from './constants/types'
-import BoughtCourses from './containers/user/BoughtCourses'
-import Profile from './containers/user/Profile'
-import UploadedCourses from './containers/user/UploadedCourses'
+import Profile from './pages/ProfilePage'
 import { HomePage, NotFoundPage, SignInPage, SignUpPage, CoursesPage, LoadingPage, UserPage } from './pages'
 import { useAppDispatch, useAppSelector } from './redux/store'
 import { setToken, setAccount, removeToken } from './redux/user/slice'
+import UploadedCoursesPage from './pages/UploadedCoursesPage'
+import BoughtCoursesPage from './pages/BoughtCoursesPage'
+import UploadCourse from './containers/user/UploadCourse'
 
 function App() {
 	const [loading, setLoading] = useState(false)
@@ -53,9 +55,12 @@ function App() {
 			<Route path='signup' element={<SignUpPage /> } />
 			<Route path="/courses/:search_text" element={<CoursesPage />} />
 			<Route element={<UserPage />}>
-				<Route path="/user/:username/profile" element={<Profile/>}/>
-				<Route path="/user/:username/boughtCourses" element={<BoughtCourses/>}/>
-				<Route path="/user/:username/uploadedCourses" element={<UploadedCourses/>}/>
+				<Route path="/user/:user_uuid/profile" element={<Profile/>}/>
+				<Route path="/user/:user_uuid/boughtCourses" element={<BoughtCoursesPage/>}/>
+				<Route element={<UploadedCoursesPage/>}>
+					<Route path="/user/:user_uuid/uploadedCourses/" element={<UploadedCoursesGrid/>}/>
+					<Route path="/user/:user_uuid/uploadedCourses/:course_id" element={<UploadCourse/>}/>
+				</Route>
 			</Route>
 			
 			<Route path="*" element={<NotFoundPage />} />

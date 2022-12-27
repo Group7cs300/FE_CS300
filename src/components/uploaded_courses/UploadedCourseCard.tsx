@@ -1,0 +1,44 @@
+import { Button, Card } from 'react-bootstrap'
+import { useNavigate, useParams } from 'react-router-dom'
+
+export default function UploadedCourseCard({ props, course }: any) {
+    const navigate = useNavigate()
+    const { username } = useParams()
+	return (
+		<Card
+			style={{
+				borderRadius: 10,
+			}}
+			className="mb-3"
+		>
+			<div className="row no-gutters">
+				<div className="col-md-4 p-0">
+					<Card.Img
+						style={{ height: '100%', borderRadius: 10 }}
+						// src={course.cover_image}
+						src="/home/python.png"
+					/>
+				</div>
+				<Card.Body
+					className="col-md-8 d-flex align-items-start flex-column p-0"
+					
+				>
+					<div className="fw-bold fs-5 px-3">{course.name}</div>
+					<div className="ml-auto fw-normal fs-6 p-1 px-3">
+						{course.tutor.username}
+					</div>
+					<div className="fw-light fs-6 px-3">
+						{course.popular} tutees
+					</div>
+					<div className="ml-auto fw-light fs-6 p-1 px-3">
+						{' '}
+						Rate {course.rate}/5
+					</div>
+					<div className="align-self-end mt-auto">
+						<Button className="m-3" onClick={() => navigate(`/user/${username}/uploadedCourses/${course.uuid}`)}>Edit</Button>
+					</div>
+				</Card.Body>
+			</div>
+		</Card>
+	)
+}

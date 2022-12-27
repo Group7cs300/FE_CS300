@@ -44,7 +44,7 @@ export default function isLogin({ props, account, dispatch }: any) {
 						Log out
 					</Dropdown.Item>
 					<div className="dropdown-divider"></div>
-					<Dropdown.Item onClick={() => navigate(`/user/${account.username}/profile`)}> Profile </Dropdown.Item>
+					<Dropdown.Item onClick={() => navigate(`/user/${account.uuid}/profile`)}> Profile </Dropdown.Item>
 				</DropdownButton>
 			) : (
 				<>

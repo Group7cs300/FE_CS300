@@ -3,10 +3,10 @@ import { Container } from 'react-bootstrap'
 import { Outlet, Route, Routes, useParams } from 'react-router-dom'
 import SideBar from '../components/users/SideBar'
 import { Footer, Navbar } from '../containers'
-import Profile from '../containers/user/Profile'
+import Profile from './ProfilePage'
 
 export default function UserPage() {
-	const { username } = useParams()
+	const { user_uuid } = useParams()
 	return (
 		<div
 			style={{
@@ -20,7 +20,7 @@ export default function UserPage() {
 				className="container-fluid d-flex flex-row justify-content-between p-0"
 				style={{ flex: 1 }}
 			>
-				<SideBar username={username}/>
+				<SideBar username={user_uuid}/>
 				<Outlet/>
 			</div>
 			<Footer />

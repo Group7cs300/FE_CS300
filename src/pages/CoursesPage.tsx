@@ -6,6 +6,7 @@ import CourseGrid from '../containers/courses/CourseGrid'
 import CountResults from '../components/courses/CountResults'
 import Filter from '../containers/courses/Filter'
 import { Footer, Navbar } from '../containers'
+import { message } from 'antd'
 
 export default function CoursesPage() {
 	interface Course {
@@ -67,14 +68,21 @@ export default function CoursesPage() {
 	const [currentSort,setCurrentSort] = useState(0)
 	useEffect(() => {
 		async function fetchCourses() {
-			const { data } = await client.get<CoursesResult>(
-				`/course?name=${search_text}&page=${page}&limit=9&ordering=${getTypeSort(currentSort,sort_direction)}&updated_at__gt=${getDateFilter(date_filter)}`
-			)
-			console.log(`/course?name=${search_text}&page=${page}&limit=9&ordering=${getTypeSort(currentSort,sort_direction)}&updated_at__gt=${getDateFilter(date_filter)}`
-			)
-			setCount(data.count)
-			setCourses(data.results)
-			console.log('date' , date_filter, '\nlevel' ,level_filter, '\nsort type', currentSort, '\ndirection', sort_direction)
+			client
+                .get<CoursesResult>(
+                    `/course?name=${search_text}&page=${page}&limit=9&ordering=${getTypeSort(
+                        currentSort,
+                        sort_direction
+                    )}&updated_at__gt=${getDateFilter(date_filter)}`
+                )
+                .then((response) => {
+                    setCount(response.data.count)
+                    setCourses(response.data.results)
+                })
+                .catch((error) => {
+                    message.error(error)
+                })
+			
 		}
 		fetchCourses()
 	}, [page,date_filter,level_filter,currentSort,sort_direction])
