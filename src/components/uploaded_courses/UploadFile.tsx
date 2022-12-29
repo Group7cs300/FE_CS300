@@ -9,16 +9,6 @@ import { RcFile, UploadProps } from "antd/es/upload";
 import { useState } from "react";
 export default function UploadFile({button,type,setFiles,setIsUpload}:any){
     const [upload,setUpload] = useState(true)
-    const beforeUpload = (file: RcFile)=>{
-        setFiles(file)
-        setUpload(!upload)
-        setIsUpload(!upload)
-        return false
-    }
-    const onRemove = ()=>{
-        setUpload(!upload)
-        setIsUpload(!upload)
-    }
     const props: UploadProps = {
         listType: type,
         onChange(info) {

@@ -3,10 +3,12 @@ import { Container } from 'react-bootstrap'
 import { Outlet, Route, Routes, useParams } from 'react-router-dom'
 import SideBar from '../components/users/SideBar'
 import { Footer, Navbar } from '../containers'
+import { useAppSelector } from '../redux/store'
 import Profile from './ProfilePage'
 
 export default function UserPage() {
-	const { user_uuid } = useParams()
+	const account = useAppSelector((state) => state.user.account)
+	const user_uuid = account?.uuid
 	return (
 		<div
 			style={{

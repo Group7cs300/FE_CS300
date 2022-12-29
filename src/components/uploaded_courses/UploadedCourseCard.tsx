@@ -1,9 +1,11 @@
 import { Button, Card } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useAppSelector } from '../../redux/store'
 
 export default function UploadedCourseCard({ props, course }: any) {
     const navigate = useNavigate()
-    const { username } = useParams()
+    const account = useAppSelector((state) => state.user.account)
+	const user_uuid = account?.uuid
 	return (
 		<Card
 			style={{
@@ -15,8 +17,7 @@ export default function UploadedCourseCard({ props, course }: any) {
 				<div className="col-md-4 p-0">
 					<Card.Img
 						style={{ height: '100%', borderRadius: 10 }}
-						// src={course.cover_image}
-						src="/home/python.png"
+						src={course.cover_image}
 					/>
 				</div>
 				<Card.Body
@@ -35,7 +36,7 @@ export default function UploadedCourseCard({ props, course }: any) {
 						Rate {course.rate}/5
 					</div>
 					<div className="align-self-end mt-auto">
-						<Button className="m-3" onClick={() => navigate(`/user/${username}/uploadedCourses/${course.uuid}`)}>Edit</Button>
+						<Button className="m-3" onClick={() => navigate(`/user/${user_uuid}/uploadedCourses/${course.uuid}`)}>Edit</Button>
 					</div>
 				</Card.Body>
 			</div>

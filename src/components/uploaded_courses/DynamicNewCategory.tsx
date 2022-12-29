@@ -5,16 +5,23 @@ import {
 	DollarOutlined,
 	UploadOutlined,
 } from '@ant-design/icons'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import FormInput from './FormInput'
-export default function DynamicInput({
+export default function DynamicNewCategory({
 	props,
 	label,
 	name,
 	message,
 	placeholder,
+	setIsHaveCategory,
 }: any) {
 	const [count, setCount] = useState(-1)
+	useEffect(()=>{
+		if(count > -1)
+			setIsHaveCategory(false)
+		else
+			setIsHaveCategory(true)
+	},[count])
 	return (
 		<Form.List name={name}>
 			{(fields, { add, remove }) => (

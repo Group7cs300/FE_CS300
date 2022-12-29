@@ -86,7 +86,6 @@ export default function CoursesPage() {
 		}
 		fetchCourses()
 	}, [page,date_filter,level_filter,currentSort,sort_direction])
-	
 	return (
 		<div
 			style={{

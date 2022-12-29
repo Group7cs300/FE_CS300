@@ -3,10 +3,9 @@ import { Button, Col, Container, Row } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
 import client from '../../client/axios'
 import UploadedCourseCard from '../../components/uploaded_courses/UploadedCourseCard'
-import { useAppSelector } from '../../redux/store'
 
 
-export default function UploadedCourseGrid() {
+export default function BoughtCoursesGrid() {
     interface Course {
 		uuid: string
 		name: string
@@ -20,13 +19,12 @@ export default function UploadedCourseGrid() {
 		results: Course[]
 	}
     const navigate = useNavigate()
-	const account = useAppSelector((state) => state.user.account)
-	const user_uuid = account?.uuid
+    const { user_uuid } = useParams()
     const[courses, setCourses] = useState<Course[]>([])
     useEffect(() => {
 		async function fetchCourses() {
 			const { data } = await client.get<CoursesResult>(
-				`/course?tutor=${user_uuid}`
+				`/course`
             )
             setCourses(data.results)
 		}
@@ -35,7 +33,6 @@ export default function UploadedCourseGrid() {
 	return (
 		<div className="col m-4">
             <li className='w-bold fs-2 py-4 px-4'>Uploaded Courses</li>
-            <Button className="m-3" onClick={() => navigate(`/user/${user_uuid}/uploadedCourses/add`)}> New course</Button>
                     {courses.map((course: any) => (
 							<Row className="p-3" key={course.name}>
 								<UploadedCourseCard course={course} />

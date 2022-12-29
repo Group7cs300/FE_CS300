@@ -6,7 +6,7 @@ import {
 	UploadOutlined,
 } from '@ant-design/icons'
 import { useState } from "react"
-export default function DynamicSelect({props,label,name,message,placeholder, choices}:any){
+export default function DynamicSelect({props,label,name,message,placeholder, choices, isRequire}:any){
 	let nameDefaut
 	const [count,setCount] = useState(0)
     return(
@@ -33,7 +33,7 @@ export default function DynamicSelect({props,label,name,message,placeholder, cho
 												}
 												rules={[
 													{
-														required: true,
+														required: isRequire,
 														message:
 															message,
 													},
@@ -49,7 +49,7 @@ export default function DynamicSelect({props,label,name,message,placeholder, cho
 													
 												</Select>
 											</Form.Item>
-											{index != 0 && <MinusCircleOutlined
+											{count != 0 && <MinusCircleOutlined
 												style={{
 													height: 40,
 													color: 'red',
@@ -77,6 +77,22 @@ export default function DynamicSelect({props,label,name,message,placeholder, cho
 										</Space>
 									)
 								})}
+								{count == -1 && <Form.Item className="d-flex align-items-center justify-content-center">
+										<Button
+											className="d-flex align-items-center justify-content-center"
+											icon={<PlusOutlined />}
+											type="dashed"
+											block
+											onClick={() => {
+												add()
+												setCount(count+1)
+											}}
+										>
+											Add
+										</Button>
+									</Form.Item>
+									}
+										
 							</>
 						)}
 					</Form.List>

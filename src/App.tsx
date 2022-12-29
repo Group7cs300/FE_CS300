@@ -12,6 +12,7 @@ import { setToken, setAccount, removeToken } from './redux/user/slice'
 import UploadedCoursesPage from './pages/UploadedCoursesPage'
 import BoughtCoursesPage from './pages/BoughtCoursesPage'
 import UploadCourse from './containers/user/UploadCourse'
+import BoughtCoursesGrid from './containers/user/BoughtCoursesGrid'
 
 function App() {
 	const [loading, setLoading] = useState(false)
@@ -56,7 +57,9 @@ function App() {
 			<Route path="/courses/:search_text" element={<CoursesPage />} />
 			<Route element={<UserPage />}>
 				<Route path="/user/:user_uuid/profile" element={<Profile/>}/>
-				<Route path="/user/:user_uuid/boughtCourses" element={<BoughtCoursesPage/>}/>
+				<Route element={<BoughtCoursesPage/>}>
+					<Route path="/user/:user_uuid/boughtCourses/" element={<BoughtCoursesGrid/>}/>
+				</Route>
 				<Route element={<UploadedCoursesPage/>}>
 					<Route path="/user/:user_uuid/uploadedCourses/" element={<UploadedCoursesGrid/>}/>
 					<Route path="/user/:user_uuid/uploadedCourses/:course_id" element={<UploadCourse/>}/>
