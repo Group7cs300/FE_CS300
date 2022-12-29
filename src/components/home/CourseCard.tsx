@@ -2,12 +2,7 @@ import { Card } from 'react-bootstrap'
 
 export default function CourseCard() {
 	return (
-		<Card
-			style={{
-				margin: 30,
-				borderRadius: 10,
-			}}
-		>
+		<Card className='rounded m-3'>
 			<Card.Img src="/home/python.png" />
 			<Card.Body>
 				<Card.Text>
