@@ -11,7 +11,7 @@ export default function CourseCard() {
 			<Card.Img src="/home/python.png" />
 			<Card.Body>
 				<Card.Text>
-					Python for Beginer: Learn the Python programming language
+					Python for Beginner: Learn the Python programming language
 					and the fundamentals of Python
 				</Card.Text>
 				<Card.Footer>Tutor</Card.Footer>

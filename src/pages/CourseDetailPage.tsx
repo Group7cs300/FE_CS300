@@ -1,11 +1,37 @@
-import { Footer, Navbar } from '../container'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import client from '../client/axios'
+import { Footer, Navbar, CourseDescription } from '../container'
 
 export default function CourseDetailPage() {
+    interface Course {
+		uuid: number
+		name: string
+        description: string
+        tutor: string
+        image: string
+        date: string
+        categories: string //vector<Categories> (?)
+	}
+
+	const [courses, setCourses] = useState<Course[]>([])
+
+	useEffect(() => {
+		async function fetchCourses() {
+			const { data } = await client.get('/course')
+			setCourses(data)
+		}
+
+		fetchCourses()
+	}, [])
+
+    
 	return (
 		<div 
             className='d-flex flex-column'
             style={{
-                height: '100vh'
+                height: '100vh',
+                display: 'inline-block'
             }}
         >
 			<Navbar />
@@ -14,7 +40,8 @@ export default function CourseDetailPage() {
                     flex: 1
                 }}
             >
-                asdasd
+                
+                <CourseDescription />
             </div>
 			<Footer />
 		</div>
