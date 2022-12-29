@@ -22,21 +22,14 @@ export default function TaughtBy() {
 					}}
 				>
 					<Row>
-						<h1
-							style={{
-								textAlign: 'left',
-								marginBottom: '10%',
-								marginLeft: '10%',
-								width: '70%',
-							}}
-						>
+						<h1 style={{ textAlign: 'center' }}>
 							Classes Taught by Qualified creators
 						</h1>
 					</Row>
-					<Row style={{ marginLeft: '40%' }}>
-						<h2 style={{ textAlign: 'left' }}>Jessica Hische</h2>
-						<h2 style={{ textAlign: 'left' }}>Tom Foese</h2>
-						<h2 style={{ textAlign: 'left' }}>Jade Nguyen</h2>
+					<Row>
+						<h2 style={{ textAlign: 'center' }}>Jessica Hische</h2>
+						<h2 style={{ textAlign: 'center' }}>Jessica Hische</h2>
+						<h2 style={{ textAlign: 'center' }}>Jessica Hische</h2>
 					</Row>
 				</Col>
 				<Col>

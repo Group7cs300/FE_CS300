@@ -1,4 +1,4 @@
-import { Footer, Navbar } from '../container'
+import { Footer, Navbar } from '../containers'
 
 export default function NotFoundPage() {
 	return (

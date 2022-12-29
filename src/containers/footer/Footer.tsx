@@ -1,9 +1,8 @@
 import { NavLink } from 'react-router-dom'
 import Nav from 'react-bootstrap/Nav'
-import Button from 'react-bootstrap/Button'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
-import { ButtonGroup, SplitButton } from 'react-bootstrap'
+import { ButtonGroup } from 'react-bootstrap'
 
 import './Footer.css'
 
@@ -15,6 +14,7 @@ let linkStyle = {
 
 export default function Footer() {
 	return (
+		<footer>
 		<div style={{ height: 250, background: '#002333', color: 'white' }}>
 			<div
 				style={{
@@ -151,5 +151,6 @@ export default function Footer() {
 				</Nav.Link>
 			</div>
 		</div>
+		</footer>
 	)
 }
