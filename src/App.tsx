@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useParams } from 'react-router-dom'
 import client from './client/axios'
 import APIS from './constants/api'
 import LOCAL_STORAGE_KEYS from './constants/local_storage'
@@ -14,6 +14,7 @@ function App() {
 	const dispatch = useAppDispatch()
 	const user = useAppSelector((state) => state.user)
 	const token = localStorage.getItem(LOCAL_STORAGE_KEYS.TOKEN_KEY)
+	const {uuid} = useParams()
 
 	useEffect(() => {
 		if (user.account || !token) return
@@ -48,7 +49,7 @@ function App() {
 			<Route path="/" element={<HomePage />} />
 			<Route path='signin' element={<SignInPage /> } />
 			<Route path='signup' element={<SignUpPage /> } />
-			<Route path="/courses/:search_text" element={<CoursesPage />} />
+			<Route path="/courses/:uuid" element={<CoursesPage />} />
 			<Route path="*" element={<NotFoundPage />} />
 		</Routes>
 	)
