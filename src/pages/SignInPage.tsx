@@ -1,110 +1,89 @@
-import { Checkbox, Form, Input, Button } from 'antd'
-import axios, { AxiosError } from 'axios'
-import { useState } from 'react'
-import { Container } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
-import client from '../client/axios'
-import APIS from '../constants/api'
-import LOCAL_STORAGE_KEYS from '../constants/local_storage'
-import { SigninCredentails, User } from '../constants/types'
 import { Footer, Navbar } from '../containers'
-import { useAppDispatch } from '../redux/store'
-import { setToken } from '../redux/user/slice'
+import { Container } from 'react-bootstrap'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Image from 'react-bootstrap/Image'
+import SignInForm from '../components/signin/SignInForm'
+import { SignInSocialAccount } from '../components'
 
 export default function SignInPage() {
-	interface InputError {
-		username?: string
-		password?: string
-		detail?: string
-	}
-
-	const [inputError, setInputError] = useState<InputError>({})
-	const navigate = useNavigate()
-	const dispatch = useAppDispatch()
-
-	const onFinish = (values: SigninCredentails) => {
-		client
-			.post<User>(APIS.SIGN_IN, {
-				username: values.username,
-				password: values.password,
-			})
-			.then((response) => {
-				if (response.data.token) {
-					localStorage.setItem(
-						LOCAL_STORAGE_KEYS.TOKEN_KEY,
-						response.data.token
-					)
-					dispatch(setToken(response.data.token))
-					navigate('/')
-				}
-			})
-			.catch((err: Error | AxiosError<InputError>) => {
-				if (axios.isAxiosError(err)) {
-					if (err.response) {
-						setInputError(err.response.data)
-					}
-				}
-			})
-	}
-
 	return (
-		<div className="d-flex flex-column vh-100">
-			<Navbar />
-			<Container className="d-flex flex-column flex-grow-1 justify-content-center align-items-center">
-				<Form
-					onFinish={onFinish}
-					name="basic"
-					initialValues={{ remember: true }}
-					autoComplete="off"
+		<Container
+			fluid
+			style={{
+				padding: 0,
+			}}
+		>
+			<Row>
+				<Navbar />
+			</Row>
+			<Row>
+				<Col
+					style={{
+						display: 'flex',
+						flexDirection: 'column',
+						marginLeft: '3%',
+						marginRight: '3%',
+						padding: 0,
+					}}
+					xs={6}
 				>
-					<Form.Item
-						label="Username"
-						validateStatus={inputError.username ? 'error' : ''}
-						hasFeedback
-						help={inputError.username}
-						name="username"
-						rules={[
-							{
-								required: true,
-								message: 'Please input your username!',
-							},
-						]}
+					<Image
+						src="/home/Login_picture_01.png"
+						style={{
+							width: '70%',
+							marginTop: '10%',
+							marginBottom: '5%',
+							marginLeft: '30%',
+						}}
+					/>
+					<Image
+						src="/home/Login_picture_02.png"
+						style={{
+							width: '70%',
+							marginBottom: '5%',
+							marginLeft: '5%',
+						}}
+					/>
+				</Col>
+				<Col
+					style={{
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
+						justifyContent: 'center',
+						marginTop: '10%',
+						marginBottom: '10%',
+						marginLeft: '10%',
+						marginRight: '10%',
+						backgroundColor: '#002333',
+						color: 'white',
+						borderRadius: 40,
+						paddingTop: 20,
+						paddingBottom: 20,
+					}}
+				>
+					<h1
+						style={{
+							fontSize: 40,
+						}}
 					>
-						<Input />
-					</Form.Item>
-
-					<Form.Item
-						label="Password"
-						name="password"
-						validateStatus={inputError.password ? 'error' : ''}
-						hasFeedback
-						help={inputError.password}
-						rules={[
-							{
-								required: true,
-								message: 'Please input your password!',
-							},
-						]}
+						Sign in
+					</h1>
+					<h2
+						style={{
+							fontSize: 20,
+						}}
 					>
-						<Input.Password />
-					</Form.Item>
-
-					<Form.Item name="remember" valuePropName="checked">
-						<Checkbox>Remember me</Checkbox>
-					</Form.Item>
-
-					<Form.Item
-						validateStatus={inputError.detail ? 'error' : ''}
-						hasFeedback
-						help={inputError.detail}
-					>
-						<Button type="primary" htmlType="submit">
-							Submit
-						</Button>
-					</Form.Item>
-				</Form>
-			</Container>
-			<Footer />
-		</div>
+						Sign in to your account
+					</h2>
+					<SignInForm />
+					<SignInSocialAccount />
+				</Col>
+			</Row>
+			<Row>
+				<Footer />
+			</Row>
+		</Container>
 	)
 }

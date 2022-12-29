@@ -73,7 +73,7 @@ export default function Navbar() {
 										style={linkStyle}
 										className="d-flex align-items-center"
 									>
-										Đăng nhập
+										Sign in
 									</Nav.Link>
 									<Nav.Link
 										to="/signup"
@@ -81,7 +81,7 @@ export default function Navbar() {
 										style={linkStyle}
 										className="d-flex align-items-center"
 									>
-										Đăng ký
+										Sign up
 									</Nav.Link>
 								</>
 							)}
