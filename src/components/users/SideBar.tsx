@@ -5,17 +5,17 @@ export default function SideBar({ props, username }: any) {
 	const SidebarData = [
 		{
 			title: 'Profile',
-			path: `/user/${username}/profile`,
+			path: `/user/profile`,
 			id: 1,
 		},
 		{
 			title: 'Uploaded Course',
-			path: `/user/${username}/uploadedCourses`,
+			path: `/user/uploadedCourses`,
 			id: 2,
 		},
 		{
 			title: 'Bought Course',
-			path: `/user/${username}/boughtCourses`,
+			path: `/user/boughtCourses`,
 			id: 3,
 		},
 	]

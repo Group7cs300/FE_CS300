@@ -36,7 +36,7 @@ export default function UploadedCourseCard({ props, course }: any) {
 						Rate {course.rate}/5
 					</div>
 					<div className="align-self-end mt-auto">
-						<Button className="m-3" onClick={() => navigate(`/user/${user_uuid}/uploadedCourses/${course.uuid}`)}>Edit</Button>
+						<Button className="m-3" onClick={() => navigate(`/user/uploadedCourses/${course.uuid}`)}>Edit</Button>
 					</div>
 				</Card.Body>
 			</div>

@@ -7,7 +7,12 @@ import {
 } from '@ant-design/icons'
 import { RcFile, UploadProps } from "antd/es/upload";
 import { useState } from "react";
-export default function UploadFile({button,type,setFiles,setIsUpload}:any){
+export default function UploadFile({button,type,setFiles,setIsUpload,id}:any){
+    interface File {
+		file: RcFile[]
+		id : number
+	}
+
     const [upload,setUpload] = useState(true)
     const props: UploadProps = {
         listType: type,
@@ -23,12 +28,19 @@ export default function UploadFile({button,type,setFiles,setIsUpload}:any){
             }
         },
         beforeUpload(file, FileList) {
-            setFiles(FileList)
+            setFiles({
+                file : FileList,
+                id : id
+            })
             setUpload(!upload)
             setIsUpload(!upload)
             return false
         },
         onRemove(){
+            setFiles({
+                file : [],
+                id : id
+            })
             setUpload(!upload)
             setIsUpload(!upload)
         }

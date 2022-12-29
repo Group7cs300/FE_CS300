@@ -12,11 +12,29 @@ import { RcFile } from 'antd/es/upload'
 
 export default function DynamicAddSection({
 	props,
-	addDocument,
-	addVideo,
+	sectionsFile,
+	setSectionsFile,
 }: any) {
+	interface File {
+		file: RcFile[]
+		id : number
+	}
+	interface SectionFile {
+		document: RcFile[]
+		video : RcFile[]
+	}
 	const [isUploadDocument, setIsUploadDocument] = useState(true)
 	const [isUploadVideo, setIsUploadVideo] = useState(true)
+	const addDocument = (document: File) =>{
+		let temp: SectionFile[] = sectionsFile
+		temp[document.id].document = document.file
+		setSectionsFile(temp)
+	}
+	const addVideo = (video : File) =>{
+		let temp: SectionFile[] = sectionsFile
+		temp[video.id].video = video.file
+		setSectionsFile(temp)
+	}
 	return (
 		<Form.List name="sections">
 			{(fields, { add, remove }) => (
@@ -64,6 +82,7 @@ export default function DynamicAddSection({
 									<UploadFile
 										type="picture-card"
 										setFiles={addVideo}
+										id = {index}
 										setIsUpload={setIsUploadVideo}
 										button={
 											<div>
@@ -88,6 +107,7 @@ export default function DynamicAddSection({
 									<UploadFile
 										type="picture-card"
 										setFiles={addDocument}
+										id={index}
 										setIsUpload={setIsUploadDocument}
 										button={
 											<div>
@@ -106,6 +126,9 @@ export default function DynamicAddSection({
 									}}
 									onClick={() => {
 										remove(field.name)
+										let temp:SectionFile[] = sectionsFile
+										temp.splice(index,1)
+										setSectionsFile(temp)
 									}}
 								/>
 							</Space>
@@ -119,6 +142,9 @@ export default function DynamicAddSection({
 							block
 							onClick={() => {
 								add()
+								let temp:SectionFile[] = sectionsFile
+								temp.push({document:[],video:[]})
+								setSectionsFile(temp)
 							}}
 						>
 							Add

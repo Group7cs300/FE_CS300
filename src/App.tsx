@@ -56,13 +56,13 @@ function App() {
 			<Route path='signup' element={<SignUpPage /> } />
 			<Route path="/courses/:search_text" element={<CoursesPage />} />
 			<Route element={<UserPage />}>
-				<Route path="/user/:user_uuid/profile" element={<Profile/>}/>
+				<Route path="/user/profile" element={<Profile/>}/>
 				<Route element={<BoughtCoursesPage/>}>
-					<Route path="/user/:user_uuid/boughtCourses/" element={<BoughtCoursesGrid/>}/>
+					<Route path="/user/boughtCourses/" element={<BoughtCoursesGrid/>}/>
 				</Route>
 				<Route element={<UploadedCoursesPage/>}>
-					<Route path="/user/:user_uuid/uploadedCourses/" element={<UploadedCoursesGrid/>}/>
-					<Route path="/user/:user_uuid/uploadedCourses/:course_id" element={<UploadCourse/>}/>
+					<Route path="/user/uploadedCourses/" element={<UploadedCoursesGrid/>}/>
+					<Route path="/user/uploadedCourses/:course_id" element={<UploadCourse/>}/>
 				</Route>
 			</Route>
 			
