@@ -4,7 +4,14 @@ import client from './client/axios'
 import APIS from './constants/api'
 import LOCAL_STORAGE_KEYS from './constants/local_storage'
 import { Account } from './constants/types'
-import { HomePage, NotFoundPage, SignInPage, SignUpPage, CoursesPage, LoadingPage } from './pages'
+import {
+	HomePage,
+	NotFoundPage,
+	SignInPage,
+	CoursesPage,
+	LoadingPage,
+	SignUpPage,
+} from './pages'
 import { useAppDispatch, useAppSelector } from './redux/store'
 import { setToken, setAccount, removeToken } from './redux/user/slice'
 
@@ -46,8 +53,8 @@ function App() {
 	return (
 		<Routes>
 			<Route path="/" element={<HomePage />} />
-			<Route path='signin' element={<SignInPage /> } />
-			<Route path='signup' element={<SignUpPage /> } />
+			<Route path="signin" element={<SignInPage />} />
+			<Route path="signup" element={<SignUpPage />} />
 			<Route path="/courses/:search_text" element={<CoursesPage />} />
 			<Route path="*" element={<NotFoundPage />} />
 		</Routes>

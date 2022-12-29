@@ -25,6 +25,8 @@ export default function PopularCategories() {
 					style={{
 						margin: '25px 40px',
 						borderBottom: 'solid 3px #1a049e',
+						fontSize: 20,
+						marginBottom: 0,
 					}}
 				>
 					{category}
