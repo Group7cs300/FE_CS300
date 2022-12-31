@@ -5,13 +5,13 @@ import CourseCard from './CourseCard'
 export default function CoursesGroup() {
 	return (
 		<CardGroup>
-			<NavLink to="/course/1">
+			<NavLink to="/course">
 				<CourseCard />
 			</NavLink>
-			<NavLink to="/course/1">
+			<NavLink to="/course">
 				<CourseCard />
 			</NavLink>
-			<NavLink to="/course/1">
+			<NavLink to="/course">
 				<CourseCard />
 			</NavLink>
 		</CardGroup>

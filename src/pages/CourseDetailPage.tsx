@@ -1,29 +1,45 @@
+import { Col, message, Row } from 'antd'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import client from '../client/axios'
-import { Footer, Navbar, CourseDescription } from '../container'
+import { Footer, Navbar, CourseDescription } from '../containers'
 
 export default function CourseDetailPage() {
-    interface Course {
+    interface CourseDetail {		
 		uuid: number
 		name: string
-        description: string
-        tutor: string
-        image: string
-        date: string
-        categories: string //vector<Categories> (?)
+		price: number
+		rate: GLfloat
+		popular: number
+		tutor: any
+		cover_image: string
+		description: string
+		relatedCourse: CourseDetail
 	}
 
-	const [courses, setCourses] = useState<Course[]>([])
+	interface CoursesResult {
+		count: number
+		results: CourseDetail[]
+	}
+
+    const { uuid } = useParams()
+	const [ course, setCourses ] = useState<CourseDetail[]>([])
 
 	useEffect(() => {
 		async function fetchCourses() {
-			const { data } = await client.get('/course')
-			setCourses(data)
+			client
+                .get<CoursesResult>(
+                    `/course/${uuid}`
+                )
+                .then((response) => {
+                    setCourses(response.data.results)
+                })
+                .catch((error) => {
+                    message.error(error)
+                })
 		}
-
 		fetchCourses()
-	}, [])
+}, [])
 
     
 	return (
@@ -40,9 +56,14 @@ export default function CourseDetailPage() {
                     flex: 1
                 }}
             >
-                
-                <CourseDescription />
-            </div>
+
+			<Row>
+				<CourseDescription 
+					course={course}
+					//relatedCourse={course.relatedCourse}
+				/>
+			</Row>
+        	</div>
 			<Footer />
 		</div>
 	)

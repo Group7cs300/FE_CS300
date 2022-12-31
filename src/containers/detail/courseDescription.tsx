@@ -1,27 +1,23 @@
 import { Col, Container, Row } from 'react-bootstrap'
-import Button from "../button/Button";
+import Button from "./Button";
 import Image from 'react-bootstrap/Image'
-import Star from '../Star/star'
-import Section from '../Section/Section'
-import CoursesCard from '../../components/courses_group/CourseCard'
+import Star from './star'
+import Section from './Section'
+import { CourseCard } from '../../components';
+import Categories from '../../components/DetailCourse/Categories';
 
-export default function CourseDescription() {
+
+export default function CourseDescription({
+	course,
+}: any) {
 	return (
 		<Container fluid style={{ padding: 0 }}>
 		<Container fluid style={{ padding: 0 }} >
-/*data*/				<Image style={{width: "100%", opacity: "0.6", height:"600px"}} src="/home/python.png" />
+				<Image style={{width: "100%", opacity: "0.6", height:"600px"}} src={course.cover_image} />
 		</Container>
 		<Container>
 			<Row>
-				<Col
-					style={{
-						display: 'flex',
-						alignItems: 'left',
-						flexDirection: 'column',
-						justifyContent: 'center',
-						
-					}}
-				>
+				<Col>
 					
 					<h2
 						style={{
@@ -35,7 +31,7 @@ export default function CourseDescription() {
 							color: '#002333'
 						}}
 					>
-/*data*/						Python for Beginner: Learn the Python programming language and the fundamentals of Python
+					{course.title}
 					</h2>
 				</Col>
 			</Row>
@@ -60,49 +56,11 @@ export default function CourseDescription() {
 							fontSize: 16,
 						}}
 					>
-/*data*/						Categories:
+						Categories:
 					</h2>
 				</Col>
-				<Col
-					style={{
-					display: 'flex',
-					alignItems: 'center',
-					flexDirection: 'column',
-					justifyContent: 'center',
-					
-				}}>
-					<Button 
-						border="none"
-						backgroundColor="#002333"
-						color="#FFFFFF"
-						fontSize="16px"
-						height = "30px"
-						onClick={() => console.log("Button!")}
-						radius = "30px"
-						width = "250px"
-/*data*/						children = "Information Technology"
-					/>	
-				</Col>
-				<Col
-					style={{
-					display: 'flex',
-					alignItems: 'center',
-					flexDirection: 'column',
-					justifyContent: 'center',
-					
-				}}>
-					<Button 
-						border="none"
-						backgroundColor="#002333"
-						color="#FFFFFF"
-						fontSize="16px"
-						background-color="#none"
-						height = "30px"
-						onClick={() => console.log("Button")}
-						radius = "30px"
-						width = "250px"
-/*data*/						children = "Algorithms"
-					/>
+				<Col>
+						<Categories course={course}></Categories>
 				</Col>
 				<Col></Col>
 				<Col
@@ -111,7 +69,7 @@ export default function CourseDescription() {
 						alignItems: 'center',
 						flexDirection: 'column',
 						justifyContent: 'center',}}>
-/*data*/						Rating &nbsp;
+						Rating: &nbsp; {course.rating}
 					<Star/>
 				</Col>
 			</Row>
@@ -137,7 +95,8 @@ export default function CourseDescription() {
 							fontSize: 16,
 						}}
 					>
-/*data*/						Shared by: Tutor
+						Shared by:
+						{course.tutor.username}
 					</h2>
 				</Col>
 				<Col></Col>
@@ -161,7 +120,7 @@ export default function CourseDescription() {
 							fontSize: 16,
 						}}
 					>
-/*data*/						Latest Update: date
+/*data*/						Latest Update: {course.updated_at}
 					</h2>
 				</Col>
 				<Col></Col>
@@ -290,11 +249,9 @@ export default function CourseDescription() {
 						}}>
 							Relative courses
 						</Row>
-						<Row>
-/*data*/							<CoursesCard/>
-							<CoursesCard/>
-							<CoursesCard/>
-						</Row>
+						<Row><CourseCard course={course}/></Row>
+						<Row><CourseCard course={course}/></Row>
+						<Row><CourseCard course={course}/></Row>
 				</Col>
 			</Row>
 
