@@ -158,7 +158,7 @@ export default function BoughtCourseDetail() {
 					</Container>
 					<Container className="align-items-center py-3">
 						<div className="fw-bolder fs-3">About This Class</div>
-						<div className="fw-bolder fs-5 py-3">
+						<div className="fw-bolder fs-5 py-3" style={{whiteSpace:"pre-line"}}>
 							{course?.description}
 						</div>
 					</Container>
