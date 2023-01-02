@@ -1,14 +1,8 @@
-import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
-import { Button, Col, Navbar as NB, Row } from 'react-bootstrap'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Col, Navbar as NB, Row } from 'react-bootstrap'
 import Search from '../../components/navbar/search'
-import LOCAL_STORAGE_KEYS from '../../constants/local_storage'
 import { useAppSelector, useAppDispatch } from '../../redux/store'
-import { removeToken, removeAccount } from '../../redux/user/slice'
 import Login from '../../components/navbar/Login'
-
-
 
 export default function Navbar() {
 	const account = useAppSelector((state) => state.user.account)

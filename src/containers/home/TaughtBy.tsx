@@ -9,10 +9,11 @@ export default function TaughtBy() {
 				background: '#002333',
 				color: 'white',
 				padding: 20,
+				paddingRight: 0,
 				marginTop: 20,
 			}}
 		>
-			<Row xs={1} sm={2}>
+			<Row>
 				<Col
 					style={{
 						display: 'flex',
@@ -22,18 +23,36 @@ export default function TaughtBy() {
 					}}
 				>
 					<Row>
-						<h1 style={{ textAlign: 'center' }}>
+						<h1
+							style={{
+								width: '80%',
+								lineHeight: 2,
+								marginLeft: '5%',
+							}}
+						>
 							Classes Taught by Qualified creators
 						</h1>
 					</Row>
-					<Row>
-						<h2 style={{ textAlign: 'center' }}>Jessica Hische</h2>
-						<h2 style={{ textAlign: 'center' }}>Jessica Hische</h2>
-						<h2 style={{ textAlign: 'center' }}>Jessica Hische</h2>
+					<Row
+						style={{
+							marginLeft: '30%',
+							marginTop: '10%',
+						}}
+					>
+						<h2>Jessica Hische</h2>
+						<h2>Tom Foese</h2>
+						<h2>Jade Nguyen</h2>
 					</Row>
 				</Col>
-				<Col>
-					<Image src="/home/tutor.jpeg" width="100%" />
+				<Col xs={8}>
+					<Image
+						src="/home/tutor.jpeg"
+						width="100%"
+						style={{
+							borderRadius: 40,
+							marginLeft: 40,
+						}}
+					/>
 				</Col>
 			</Row>
 		</div>
