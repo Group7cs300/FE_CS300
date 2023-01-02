@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
 import client from '../../client/axios'
+import BoughtCourseCard from '../../components/uploaded_courses/BoughtCourseCard'
 import UploadedCourseCard from '../../components/uploaded_courses/UploadedCourseCard'
 
 
@@ -24,9 +25,10 @@ export default function BoughtCoursesGrid() {
     useEffect(() => {
 		async function fetchCourses() {
 			const { data } = await client.get<CoursesResult>(
-				`/course`
+				`/course/bought_courses`
             )
             setCourses(data.results)
+			console.log(data.results)
 		}
 		fetchCourses()
 	}, [])
@@ -35,7 +37,7 @@ export default function BoughtCoursesGrid() {
             <li className='w-bold fs-2 py-4 px-4'>Uploaded Courses</li>
                     {courses.map((course: any) => (
 							<Row className="p-3" key={course.name}>
-								<UploadedCourseCard course={course} />
+								<BoughtCourseCard course={course} />
 							</Row>
 						))}
 		</div>

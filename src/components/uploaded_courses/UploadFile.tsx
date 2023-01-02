@@ -8,11 +8,12 @@ import {
 import { RcFile, UploadProps } from "antd/es/upload";
 import { useState } from "react";
 export default function UploadFile({button,type,setFiles,setIsUpload,id}:any){
+    console.log(id)
     interface File {
 		file: RcFile[]
 		id : number
 	}
-
+    const blank: RcFile[] = []
     const [upload,setUpload] = useState(true)
     const props: UploadProps = {
         listType: type,
@@ -27,19 +28,22 @@ export default function UploadFile({button,type,setFiles,setIsUpload,id}:any){
                 message.error(`${info.file.name} file upload failed.`)
             }
         },
+        
         beforeUpload(file, FileList) {
+            setIsUpload(!upload)
+            setUpload(!upload)
             setFiles({
                 file : FileList,
-                id : id
+                id : id-1
             })
-            setUpload(!upload)
-            setIsUpload(!upload)
+            
+            
             return false
         },
         onRemove(){
             setFiles({
-                file : [],
-                id : id
+                file : blank,
+                id : id-1
             })
             setUpload(!upload)
             setIsUpload(!upload)

@@ -27,12 +27,11 @@ export default function UploadCourse() {
 	const navigate = useNavigate()
 	const account = useAppSelector((state) => state.user.account)
 	const user_uuid = account?.uuid
-	const { course_id } = useParams()
 	const { TextArea } = Input
 	const [categories, setCategories] = useState<Category[]>([])
 	const [coverImage, setCoverImage] = useState<File>()
 	const [sectionsFile, setSectionsFile] = useState<SectionFile[]>([])
-	console.log(sectionsFile)
+
 	// const [description, setDescription] = useState('')
 	useEffect(() => {
 		async function fetchCategory() {
@@ -100,22 +99,22 @@ export default function UploadCourse() {
 				}
 				navigate(`/user/uploadedCourses/`)
 			})
-			// .catch((response)=>{
-			// 	console.log(response)
-			// })
+			.catch((response)=>{
+				console.log(response)
+			})
 	}
 	return (
 		<div className="col m-4">
 			<div className="d-flex flex-row align-items-center">
 				<li className="w-bold fs-2 py-4 px-4">
 					<NavLink
-						to={`/user/${user_uuid}/uploadedCourses/`}
+						to={`/user/uploadedCourses/`}
 						className="nav-link d-inline"
 					>
 						Uploaded Courses
 					</NavLink>
 				</li>
-				<li className="w-bold fs-3 py-4 px-4">{course_id}</li>
+				<li className="w-bold fs-3 py-4 px-4">Add</li>
 			</div>
 			<div>
 				<Form onFinish={onFinish}>
@@ -190,6 +189,7 @@ export default function UploadCourse() {
 					<DynamicAddSection
 						setSectionsFile = {setSectionsFile}
 						sectionsFile = {sectionsFile}
+						initIndex={0}
 					/>
 					<Form.Item>
 						<Button htmlType="submit">Button</Button>

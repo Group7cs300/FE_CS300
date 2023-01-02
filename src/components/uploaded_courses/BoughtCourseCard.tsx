@@ -1,8 +1,8 @@
-import { Button, Card } from 'react-bootstrap'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Card } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../../redux/store'
 
-export default function UploadedCourseCard({ props, course,edit }: any) {
+export default function BoughtCourseCard({ props, course,edit }: any) {
     const navigate = useNavigate()
     const account = useAppSelector((state) => state.user.account)
 	const user_uuid = account?.uuid
@@ -12,6 +12,7 @@ export default function UploadedCourseCard({ props, course,edit }: any) {
 				borderRadius: 10,
 			}}
 			className="mb-3"
+            onClick={() => navigate(`/user/boughtCourses/${course.uuid}`)}
 		>
 			<div className="row no-gutters">
 				<div className="col-md-4 p-0">
@@ -34,9 +35,6 @@ export default function UploadedCourseCard({ props, course,edit }: any) {
 					<div className="ml-auto fw-light fs-6 p-1 px-3">
 						{' '}
 						Rate {course.rate}/5
-					</div>
-					<div className="align-self-end mt-auto">
-						<Button className="m-3" onClick={() => navigate(`/user/uploadedCourses/${course.uuid}`)}>Edit</Button>
 					</div>
 				</Card.Body>
 			</div>

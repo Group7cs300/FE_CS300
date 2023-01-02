@@ -1,9 +1,7 @@
-import { Button, Form, Input, message, Select, Space } from 'antd'
+import { Button, Form, Input, Space } from 'antd'
 import {
 	PlusOutlined,
 	MinusCircleOutlined,
-	DollarOutlined,
-	UploadOutlined,
 } from '@ant-design/icons'
 import { useState } from 'react'
 import TextArea from 'antd/es/input/TextArea'
@@ -14,6 +12,7 @@ export default function DynamicAddSection({
 	props,
 	sectionsFile,
 	setSectionsFile,
+	initIndex,
 }: any) {
 	interface File {
 		file: RcFile[]
@@ -50,7 +49,7 @@ export default function DynamicAddSection({
 							>
 								<Form.Item
 									name={[field.name, 'name']}
-									label={`Section ${index + 1}`}
+									label={`Section ${index + initIndex + 1}`}
 									rules={[
 										{
 											required: true,
@@ -72,6 +71,7 @@ export default function DynamicAddSection({
 								<Form.Item
 									label="Video"
 									valuePropName="fileList"
+									name='video'
 									rules={[
 										{
 											required: isUploadVideo,
@@ -82,13 +82,13 @@ export default function DynamicAddSection({
 									<UploadFile
 										type="picture-card"
 										setFiles={addVideo}
-										id = {index}
+										id = {index+1}
 										setIsUpload={setIsUploadVideo}
 										button={
 											<div>
 												<PlusOutlined />
 												<div style={{ marginTop: 8 }}>
-													Upload
+												Upload
 												</div>
 											</div>
 										}
@@ -97,6 +97,7 @@ export default function DynamicAddSection({
 								<Form.Item
 									label="Document"
 									valuePropName="fileList"
+									name='document'
 									rules={[
 										{
 											required: isUploadDocument,
@@ -107,7 +108,7 @@ export default function DynamicAddSection({
 									<UploadFile
 										type="picture-card"
 										setFiles={addDocument}
-										id={index}
+										id={index+1}
 										setIsUpload={setIsUploadDocument}
 										button={
 											<div>
