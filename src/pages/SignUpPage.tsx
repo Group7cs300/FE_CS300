@@ -1,149 +1,90 @@
-import { Button, Checkbox, Form, Input } from 'antd'
-import axios, { AxiosError } from 'axios'
-import { useState } from 'react'
-import { Container } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
-import client from '../client/axios'
-import { User } from '../constants/types'
 import { Footer, Navbar } from '../containers'
+import { Container } from 'react-bootstrap'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Image from 'react-bootstrap/Image'
+import { SignInSocialAccount } from '../components'
+import SignUpForm from '../components/signin/SignUpForm'
 
 export default function SignUpPage() {
-	const navigate = useNavigate()
-
-	interface InputError {
-		username?: string
-		password?: string
-		email?: string
-		detail?: string
-	}
-
-	const [inputError, setInputError] = useState<InputError>({})
-
-	const onFinish = (values : any) => {
-		client
-			.post<User>('/app/account/sign_up', {
-				username: values.username,
-				password: values.password,
-				email: values.email,
-			})
-			.then(() => {
-				navigate('/signin')
-			})
-			.catch((err: Error | AxiosError<InputError>) => {
-				if (axios.isAxiosError(err)) {
-					if (err.response) {
-						setInputError(err.response.data)
-					}
-				}
-			})
-	}
-
 	return (
-		<div className="d-flex flex-column vh-100">
-			<Navbar />
-			<Container className="d-flex flex-column flex-grow-1 justify-content-center align-items-center">
-				<Form
-					onFinish={onFinish}
-					name="basic"
-					initialValues={{ remember: true }}
-					autoComplete="off"
+		<Container
+			fluid
+			style={{
+				padding: 0,
+			}}
+		>
+			<Row>
+				<Navbar />
+			</Row>
+			<Row>
+				<Col
+					style={{
+						display: 'flex',
+						flexDirection: 'column',
+						marginLeft: '3%',
+						marginRight: '3%',
+						padding: 0,
+					}}
+					xs={6}
 				>
-					<Form.Item
-						label="Username"
-						validateStatus={inputError.username ? 'error' : ''}
-						hasFeedback
-						help={inputError.username}
-						name="username"
-						rules={[
-							{
-								required: true,
-								message: 'Please input your username!',
-							},
-						]}
+					<Image
+						src="/home/Signup_picture_01.png"
+						style={{
+							width: '60%',
+							marginTop: '10%',
+							marginBottom: '5%',
+							marginLeft: '5%',
+						}}
+					/>
+					<Image
+						src="/home/Signup_picture_02.png"
+						style={{
+							width: '60%',
+							marginBottom: '5%',
+							marginLeft: '30%',
+						}}
+					/>
+				</Col>
+				<Col
+					style={{
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
+						justifyContent: 'center',
+						marginTop: '5%',
+						marginBottom: '5%',
+						marginLeft: '10%',
+						marginRight: '10%',
+						backgroundColor: '#002333',
+						color: 'white',
+						borderRadius: 40,
+						paddingTop: 20,
+						paddingBottom: 20,
+					}}
+				>
+					<h1
+						style={{
+							fontSize: 40,
+						}}
 					>
-						<Input />
-					</Form.Item>
-
-					<Form.Item
-						label="Email"
-						name="email"
-						validateStatus={inputError.email ? 'error' : ''}
-						hasFeedback
-						help={inputError.email}
-						rules={[
-							{
-								type: 'email',
-								message: 'The input is not valid E-mail!',
-							},
-							{
-								required: true,
-								message: 'Please input your email!',
-							},
-						]}
+						Sign up
+					</h1>
+					<h2
+						style={{
+							fontSize: 20,
+							marginBottom: 20,
+						}}
 					>
-						<Input />
-					</Form.Item>
-
-					<Form.Item
-						label="Password"
-						name="password"
-						validateStatus={inputError.password ? 'error' : ''}
-						hasFeedback
-						help={inputError.password}
-						rules={[
-							{
-								required: true,
-								message: 'Please input your password!',
-							},
-						]}
-					>
-						<Input.Password />
-					</Form.Item>
-
-					<Form.Item
-						label="Confirm Password"
-						name="confirm_password"
-						dependencies={['password']}
-						hasFeedback
-						help
-						rules={[
-							{
-								required: true,
-								message: 'Please confirm your password!',
-							},
-							({ getFieldValue }) => ({
-								validator(_, value) {
-									if (!value || getFieldValue('password') === value) {
-										return Promise.resolve()
-									}
-									return Promise.reject(
-										new Error(
-											'The two passwords that you entered do not match!'
-										)
-									)
-								},
-							}),
-						]}
-					>
-						<Input.Password />
-					</Form.Item>
-
-					<Form.Item name="remember" valuePropName="checked">
-						<Checkbox>Remember me</Checkbox>
-					</Form.Item>
-
-					<Form.Item
-						validateStatus={inputError.detail ? 'error' : ''}
-						hasFeedback
-						help={inputError.detail}
-					>
-						<Button type="primary" htmlType="submit">
-							Submit
-						</Button>
-					</Form.Item>
-				</Form>
-			</Container>
-			<Footer />
-		</div>
+						Create your account{' '}
+					</h2>
+					<SignUpForm />
+					<SignInSocialAccount />
+				</Col>
+			</Row>
+			<Row>
+				<Footer />
+			</Row>
+		</Container>
 	)
 }
