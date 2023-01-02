@@ -14,6 +14,7 @@ export default function CourseGrid({
 				<Container>
 					<Row sm="1" lg="2" xxl="3">
 						{courses.map((course: any) => (
+							
 							<Col className="p-4" key={course.name}>
 								<CourseCard course={course} />
 							</Col>
