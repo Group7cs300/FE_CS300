@@ -23,12 +23,14 @@ import UploadCourse from './containers/user/UploadCourse'
 import BoughtCoursesGrid from './containers/user/BoughtCoursesGrid'
 import UpdateCourse from './containers/user/UpdateCourse'
 import BoughtCourseDetail from './containers/user/BoughtCourseDetail'
+import CourseDetailPage from './pages/CourseDetailPage'
 
 function AuthenticatedApp() {
 	return (
 		<Routes>
 			<Route path="/" element={<HomePage />} />
 			<Route path="/courses/:search_text" element={<CoursesPage />} />
+			<Route path="/course/:course_id" element={<CourseDetailPage />} />
 			<Route element={<UserPage />}>
 				<Route path="/user/profile" element={<Profile />} />
 				<Route element={<BoughtCoursesPage />}>
@@ -55,8 +57,8 @@ function AuthenticatedApp() {
 						element={<UploadCourse />}
 					/>
 				</Route>
-				<Route path="*" element={<div style={{ flex: 1, padding:"50px" }}>404 Not found</div>} />
 			</Route>
+			<Route path="*" element={<div style={{ flex: 1, padding:"50px" }}>404 Not found</div>} />
 		</Routes>
 	)
 }
@@ -68,7 +70,7 @@ function UnAuthenticatedApp() {
 			<Route path="signin" element={<SignInPage />} />
 			<Route path="signup" element={<SignUpPage />} />
 			<Route path="/courses/:search_text" element={<CoursesPage />} />
-
+			<Route path="/course/:course_id" element={<CourseDetailPage />} />
 			<Route path="*" element={<NotFoundPage />} />
 		</Routes>
 	)
