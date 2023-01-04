@@ -52,7 +52,7 @@ export default function CourseDetailPage() {
 	const [fetching, setFetching] = useState(false)
 
 	const [show, setShow] = useState(false)
-    const navigate = useNavigate()
+	const navigate = useNavigate()
 	const handleClose = () => setShow(false)
 	const handleShow = () => setShow(true)
 	const user = useAppSelector((state) => state.user)
@@ -78,7 +78,6 @@ export default function CourseDetailPage() {
 									`/course?categories=${data[i].uuid}`
 								)
 								.then((respone) => {
-									console.log(respone.data.results)
 									setRelatedCourses(respone.data.results)
 								})
 							break
@@ -91,7 +90,6 @@ export default function CourseDetailPage() {
 				)
 				.then((response) => {
 					setSections(response.data)
-					console.log(sections)
 				})
 				.then(() => {
 					setFetching(false)
@@ -135,9 +133,18 @@ export default function CourseDetailPage() {
 								</div>
 							</Col>
 							{course?.is_bought ? (
-                                <Col>
-								<Button onClick={()=> navigate(`/user/boughtCourses/${course.uuid}`)}> Learn now </Button>
-                                </Col>
+								<Col>
+									<Button
+										onClick={() =>
+											navigate(
+												`/user/boughtCourses/${course.uuid}`
+											)
+										}
+									>
+										{' '}
+										Learn now{' '}
+									</Button>
+								</Col>
 							) : (
 								<BuyCourse
 									show={show}

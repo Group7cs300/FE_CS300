@@ -18,11 +18,11 @@ export default function UploadCourse() {
 	}
 	interface File {
 		file: RcFile[]
-		id : number
+		id: number
 	}
 	interface SectionFile {
 		document: RcFile[]
-		video : RcFile[]
+		video: RcFile[]
 	}
 	const navigate = useNavigate()
 	const account = useAppSelector((state) => state.user.account)
@@ -66,12 +66,11 @@ export default function UploadCourse() {
 				form_data.append('custom_categories', new_category.name)
 			})
 		}
-		if(coverImage != undefined)
+		if (coverImage != undefined)
 			form_data.append('cover_image', coverImage.file[0])
 		client
 			.post(`/course`, form_data)
 			.then((response) => {
-				console.log(response.data.uuid)
 				message.success('OK')
 				return response.data.uuid
 			})
@@ -83,12 +82,16 @@ export default function UploadCourse() {
 						section_form.append('sectionNum', index + 1)
 						if (section.summary != undefined)
 							section_form.append('summary', section.summary)
-						console.log(sectionsFile)
-						console.log(sectionsFile[index].document.length)
 						if (sectionsFile[index].document.length != 0)
-							section_form.append('document', sectionsFile[index].document[0])
+							section_form.append(
+								'document',
+								sectionsFile[index].document[0]
+							)
 						if (sectionsFile[index].video.length != 0)
-							section_form.append('video',  sectionsFile[index].video[0])
+							section_form.append(
+								'video',
+								sectionsFile[index].video[0]
+							)
 						section_form.append('course', data)
 						client
 							.post(`/sections`, section_form)
@@ -99,8 +102,8 @@ export default function UploadCourse() {
 				}
 				navigate(`/user/uploadedCourses/`)
 			})
-			.catch((response)=>{
-				console.log(response)
+			.catch((response) => {
+				message.success(response)
 			})
 	}
 	return (
@@ -150,7 +153,7 @@ export default function UploadCourse() {
 							},
 						]}
 					>
-						<InputNumber min={1} max={500}/>
+						<InputNumber min={1} max={500} />
 					</Form.Item>
 					<Form.Item
 						label="Cover Image"
@@ -166,7 +169,7 @@ export default function UploadCourse() {
 						<UploadFile
 							type="picture-card"
 							setFiles={setCoverImage}
-							id = {1}
+							id={1}
 							setIsUpload={setIsUpload}
 							button={
 								<div>
@@ -187,14 +190,13 @@ export default function UploadCourse() {
 						label={<p style={{ fontWeight: 'bold' }}>Section</p>}
 					></Form.Item>
 					<DynamicAddSection
-						setSectionsFile = {setSectionsFile}
-						sectionsFile = {sectionsFile}
+						setSectionsFile={setSectionsFile}
+						sectionsFile={sectionsFile}
 						initIndex={0}
 					/>
 					<Form.Item>
 						<Button htmlType="submit">Button</Button>
 					</Form.Item>
-					
 				</Form>
 			</div>
 		</div>

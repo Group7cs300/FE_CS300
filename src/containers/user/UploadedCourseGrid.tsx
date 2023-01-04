@@ -24,12 +24,12 @@ export default function UploadedCourseGrid() {
 	const [courses, setCourses] = useState<Course[]>([])
 	useEffect(() => {
 		async function fetchCourses() {
-			if (user_uuid != undefined){
+			if (user_uuid != undefined) {
 				client
-				.get<CoursesResult>(`/course?tutor=${account?.uuid}`)
-				.then((response) => {
-					setCourses(response.data.results)
-				})
+					.get<CoursesResult>(`/course?tutor=${account?.uuid}`)
+					.then((response) => {
+						setCourses(response.data.results)
+					})
 			}
 		}
 		fetchCourses()

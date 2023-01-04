@@ -9,21 +9,20 @@ export default function BuyCourse({
 	show,
 	handleShow,
 	handleClose,
-    course_id
+	course_id,
 }: any) {
 	const user = useAppSelector((state) => state.user)
-    const user_uuid= user.account?.uuid
-    const navigate = useNavigate()
-    const Confirm = () => {
-        const form_data = new FormData()
-        form_data.append('user', String(user_uuid))
-        form_data.append('course', course_id)
-        client.post(`/owned_courses`, form_data)
-        .then((response) => {
-            message.success('OK')
-        })
-        handleClose()
-    }  
+	const user_uuid = user.account?.uuid
+	const navigate = useNavigate()
+	const Confirm = () => {
+		const form_data = new FormData()
+		form_data.append('user', String(user_uuid))
+		form_data.append('course', course_id)
+		client.post(`/owned_courses`, form_data).then((response) => {
+			message.success('OK')
+		})
+		handleClose()
+	}
 	return (
 		<Col>
 			<Button variant="primary" onClick={handleShow}>
@@ -50,23 +49,24 @@ export default function BuyCourse({
 				</div>
 			) : (
 				<div>
-                    <Modal show={show} onHide={handleClose}>
+					<Modal show={show} onHide={handleClose}>
 						<Modal.Header closeButton>
 							<Modal.Title> Buy Course</Modal.Title>
 						</Modal.Header>
-						<Modal.Body>
-							You have not signed in yet !!!!
-						</Modal.Body>
+						<Modal.Body>You have not signed in yet !!!!</Modal.Body>
 						<Modal.Footer>
 							<Button variant="secondary" onClick={handleClose}>
 								Cancel
 							</Button>
-							<Button variant="primary" onClick={()=>navigate(`/signin`)}>
+							<Button
+								variant="primary"
+								onClick={() => navigate(`/signin`)}
+							>
 								Sign in now
 							</Button>
 						</Modal.Footer>
 					</Modal>
-                </div>
+				</div>
 			)}
 		</Col>
 	)

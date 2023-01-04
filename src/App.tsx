@@ -58,7 +58,7 @@ function AuthenticatedApp() {
 					/>
 				</Route>
 			</Route>
-			<Route path="*" element={<div style={{ flex: 1, padding:"50px" }}>404 Not found</div>} />
+			<Route path="*" element={<NotFoundPage />} />
 		</Routes>
 	)
 }

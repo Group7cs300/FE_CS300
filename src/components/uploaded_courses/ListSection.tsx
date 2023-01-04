@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useState } from 'react'
 import { Button, Col, Container, Row } from 'react-bootstrap'
-import { FileFilled,DownloadOutlined} from '@ant-design/icons'
+import { FileFilled, DownloadOutlined } from '@ant-design/icons'
 import PlayVideo from './PlayVideo'
 export default function ListSection({ props, sections, width }: any) {
 	interface Section {
@@ -29,7 +29,6 @@ export default function ListSection({ props, sections, width }: any) {
 			link.href = url
 			link.setAttribute('download', sections[index].document_name)
 			document.body.appendChild(link)
-			console.log(link)
 			link.click()
 		})
 	}
@@ -110,16 +109,20 @@ export default function ListSection({ props, sections, width }: any) {
 						{sections[curSection - 1]?.summary}
 					</div>
 				</Row>
-				<Row >
-                    <Col>
-					<div className="w-bold fs-5 py-2 px-4">Document: </div>
-                    </Col>
-                    <Col className='d-inline-flex flex-row align-items-center'>
-                    <FileFilled/>
-                    <div className='px-3'>{sections[curSection - 1]?.document_name}</div>
-                    <DownloadOutlined style={{ color: 'blue' }} onClick={()=>downloadFile(curSection-1)}/>
-                    </Col>
-                    
+				<Row>
+					<Col>
+						<div className="w-bold fs-5 py-2 px-4">Document: </div>
+					</Col>
+					<Col className="d-inline-flex flex-row align-items-center">
+						<FileFilled />
+						<div className="px-3">
+							{sections[curSection - 1]?.document_name}
+						</div>
+						<DownloadOutlined
+							style={{ color: 'blue' }}
+							onClick={() => downloadFile(curSection - 1)}
+						/>
+					</Col>
 				</Row>
 			</Container>
 		</>
