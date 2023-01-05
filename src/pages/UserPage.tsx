@@ -14,7 +14,6 @@ export default function UserPage() {
 			style={{
 				display: 'flex',
 				flexDirection: 'column',
-				height: '100vh',
 			}}
 		>
 			<Navbar />
@@ -22,11 +21,10 @@ export default function UserPage() {
 				className="container-fluid d-flex flex-row justify-content-between p-0"
 				style={{ flex: 1 }}
 			>
-				<SideBar username={user_uuid}/>
-				<Outlet/>
+				<SideBar username={user_uuid} />
+				<Outlet />
 			</div>
 			<Footer />
 		</div>
 	)
 }
-

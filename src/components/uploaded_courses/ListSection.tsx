@@ -55,9 +55,11 @@ export default function ListSection({ props, sections, width }: any) {
 			</style>
 			<Container>
 				<Row>
-					<Col className="col-sm-8 py-3 px-5">
-						<PlayVideo curSection={curSection} all={sections} />
-					</Col>
+					{sections[curSection - 1] != undefined && (
+						<Col className="col-sm-8 py-3 px-5">
+							<PlayVideo curSection={curSection} all={sections} />
+						</Col>
+					)}
 					<Col
 						className="col-sm-4"
 						style={{
@@ -97,33 +99,41 @@ export default function ListSection({ props, sections, width }: any) {
 						</Row>
 					</Col>
 				</Row>
-				<Row>
+				{sections[curSection - 1] != undefined && (
 					<div>
-						<li className="w-bold fs-2 py-4 px-4">
-							{sections[curSection - 1]?.name}
-						</li>
+						<Row>
+							<div>
+								<li className="w-bold fs-2 py-4 px-4">
+									{sections[curSection - 1]?.name}
+								</li>
+							</div>
+						</Row>
+						<Row>
+							<div className="w-bold fs-5 px-4">
+								{sections[curSection - 1]?.summary}
+							</div>
+						</Row>
+
+						<Row>
+							<Col>
+								<div className="w-bold fs-5 py-2 px-4">
+									Document:{' '}
+								</div>
+							</Col>
+
+							<Col className="d-inline-flex flex-row align-items-center">
+								<FileFilled />
+								<div className="px-3">
+									{sections[curSection - 1]?.document_name}
+								</div>
+								<DownloadOutlined
+									style={{ color: 'blue' }}
+									onClick={() => downloadFile(curSection - 1)}
+								/>
+							</Col>
+						</Row>
 					</div>
-				</Row>
-				<Row>
-					<div className="w-bold fs-5 px-4">
-						{sections[curSection - 1]?.summary}
-					</div>
-				</Row>
-				<Row>
-					<Col>
-						<div className="w-bold fs-5 py-2 px-4">Document: </div>
-					</Col>
-					<Col className="d-inline-flex flex-row align-items-center">
-						<FileFilled />
-						<div className="px-3">
-							{sections[curSection - 1]?.document_name}
-						</div>
-						<DownloadOutlined
-							style={{ color: 'blue' }}
-							onClick={() => downloadFile(curSection - 1)}
-						/>
-					</Col>
-				</Row>
+				)}
 			</Container>
 		</>
 	)

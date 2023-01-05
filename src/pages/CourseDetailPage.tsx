@@ -74,9 +74,7 @@ export default function CourseDetailPage() {
 					for (let i = 0; i < data.length; ++i) {
 						if (data[i].created_by_system == true) {
 							client
-								.get<Course>(
-									`/course?categories=${data[i].uuid}`
-								)
+								.get<Course>(`/course?category=${data[i].uuid}`)
 								.then((respone) => {
 									setRelatedCourses(respone.data.results)
 								})
@@ -110,9 +108,14 @@ export default function CourseDetailPage() {
 		)
 	else
 		return (
-			<div>
+			<div
+				style={{
+					display: 'flex',
+					flexDirection: 'column',
+				}}
+			>
 				<Navbar />
-				<Container fluid className="px-0">
+				<Container fluid className="px-0" style={{ flex: 1 }}>
 					<CoverImage cover_image={course?.cover_image} />
 					<Container>
 						<CourseInfo
@@ -154,7 +157,7 @@ export default function CourseDetailPage() {
 								/>
 							)}
 						</Row>
-						<Row className="py-2 justify-content-between">
+						<Row className="my-2 justify-content-between">
 							<Col className="col-sm-8">
 								<Container className="py-3">
 									<div className="fw-bolder fs-3">
@@ -170,10 +173,10 @@ export default function CourseDetailPage() {
 										{course?.description}
 									</div>
 								</Container>
-								<Container></Container>
 							</Col>
 							<RelatedCourse courses={related_courses} />
 						</Row>
+						<br />
 					</Container>
 				</Container>
 				<Footer />
