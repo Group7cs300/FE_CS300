@@ -2,15 +2,19 @@ import { useEffect } from 'react'
 import { Pagination } from 'react-bootstrap'
 
 export function PageNumber({ props, totalPage, page, setPage }: any) {
-	useEffect(() => {
-		console.log('Page', page, 'Total page', totalPage)
-	}, [page, totalPage])
+	useEffect(() => {}, [page, totalPage])
 
 	return (
 		<div>
 			<Pagination className="justify-content-center">
-				<Pagination.First disabled={page==1} onClick={() => setPage(1)} />
-				<Pagination.Prev disabled={page==1} onClick={() => setPage(page - 1)} />
+				<Pagination.First
+					disabled={page == 1}
+					onClick={() => setPage(1)}
+				/>
+				<Pagination.Prev
+					disabled={page == 1}
+					onClick={() => setPage(page - 1)}
+				/>
 				{page > 2 && page == totalPage && (
 					<Pagination.Item onClick={() => setPage(page - 2)}>
 						{' '}
@@ -28,14 +32,19 @@ export function PageNumber({ props, totalPage, page, setPage }: any) {
 						{page + 1}
 					</Pagination.Item>
 				)}
-				{page < 2 && page + 1 < totalPage &&(
+				{page < 2 && page + 1 < totalPage && (
 					<Pagination.Item onClick={() => setPage(page + 2)}>
 						{page + 2}
 					</Pagination.Item>
 				)}
-					<Pagination.Next disabled={page==totalPage} onClick={() => setPage(page + 1)} />
-					<Pagination.Last disabled={page==totalPage} onClick={() => setPage(totalPage)} />
-
+				<Pagination.Next
+					disabled={page == totalPage}
+					onClick={() => setPage(page + 1)}
+				/>
+				<Pagination.Last
+					disabled={page == totalPage}
+					onClick={() => setPage(totalPage)}
+				/>
 			</Pagination>
 		</div>
 	)

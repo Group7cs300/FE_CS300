@@ -43,7 +43,7 @@ export default function BoughtCourseDetail() {
 	const [loading, setLoading] = useState(false)
 	const [fetching, setFetching] = useState(false)
 	const [visible, setVisible] = useState(false)
-	
+
 	function formatDateVN(dateString: any) {
 		if (dateString != undefined) {
 			const date = dateString.split('T')
@@ -67,7 +67,6 @@ export default function BoughtCourseDetail() {
 				)
 				.then((response) => {
 					setSections(response.data)
-					console.log(sections)
 				})
 				.then(() => {
 					setFetching(false)
@@ -158,13 +157,15 @@ export default function BoughtCourseDetail() {
 					</Container>
 					<Container className="align-items-center py-3">
 						<div className="fw-bolder fs-3">About This Class</div>
-						<div className="fw-bolder fs-5 py-3" style={{whiteSpace:"pre-line"}}>
+						<div
+							className="fw-bolder fs-5 py-3"
+							style={{ whiteSpace: 'pre-line' }}
+						>
 							{course?.description}
 						</div>
 					</Container>
 					<Container>
-						
-							<ListSection sections={sections} width="300px" />
+						<ListSection sections={sections} width="300px" />
 					</Container>
 				</Container>
 			</div>

@@ -50,7 +50,6 @@ export default function TaughtBy() {
 						width="100%"
 						style={{
 							borderRadius: 40,
-							marginLeft: 40,
 						}}
 					/>
 				</Col>

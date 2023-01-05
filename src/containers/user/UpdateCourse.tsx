@@ -92,7 +92,7 @@ export default function UploadCourse() {
 		}
 		fetchCategory()
 	}, [])
-	const downloadFile = (index:any) =>{
+	const downloadFile = (index: any) => {
 		axios({
 			url: old_sections[index].document,
 			method: 'GET',
@@ -139,19 +139,19 @@ export default function UploadCourse() {
 					section_form.append('summary', section.summary)
 
 				if (sectionsFile[index].document.length != 0)
-					section_form.append('document', sectionsFile[index].document[0])
+					section_form.append(
+						'document',
+						sectionsFile[index].document[0]
+					)
 				if (sectionsFile[index].video.length != 0)
-					section_form.append('video',  sectionsFile[index].video[0])
+					section_form.append('video', sectionsFile[index].video[0])
 				section_form.append('course', String(course_id))
-				client
-					.post(`/sections`, section_form)
-					.then((response) => {
-						message.success('Add section success')
-					})
+				client.post(`/sections`, section_form).then((response) => {
+					message.success('Add section success')
+				})
 			})
 		}
 	}
-	console.log(old_sections)
 	if (loading || fetching)
 		return (
 			<div className="d-flex mx-auto align-items-center">
@@ -199,7 +199,7 @@ export default function UploadCourse() {
 						<Input placeholder="Enter name of course" />
 					</Form.Item>
 					<Form.Item label="Category">
-						<Categories categories={course?.categories}/>
+						<Categories categories={course?.categories} />
 					</Form.Item>
 					<Form.Item
 						label="Price ($)"
@@ -285,7 +285,9 @@ export default function UploadCourse() {
 											</Form.Item>
 											<Form.Item label="Document">
 												<a
-													onClick={()=>downloadFile(index)}
+													onClick={() =>
+														downloadFile(index)
+													}
 													style={{ color: 'blue' }}
 												>
 													{

@@ -1,7 +1,16 @@
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import Image from 'react-bootstrap/Image'
+import { useNavigate } from 'react-router-dom'
+import { useAppSelector } from '../../redux/store'
 
 export default function BecomeATutor() {
+	const user = useAppSelector((state) => state.user)
+	const user_uuid = user.account?.uuid
+	const navigate = useNavigate()
+	const onClick = () => {
+		if (user.account) navigate(`/user/uploadedCourses/add`)
+		else navigate(`signin`)
+	}
 	return (
 		<Container style={{ maxWidth: '100%' }}>
 			<Row xs={1} sm={2}>
@@ -52,6 +61,7 @@ export default function BecomeATutor() {
 							borderRadius: 20,
 							backgroundColor: '#002333',
 						}}
+						onClick={onClick}
 					>
 						Start teaching today
 					</Button>

@@ -16,11 +16,11 @@ let linkStyle = {
 export default function Footer() {
 	return (
 		<Container
+			fluid
 			style={{
 				height: 250,
 				background: '#002333',
 				color: 'white',
-				maxWidth: '100%',
 				padding: 0,
 				paddingTop: 60,
 			}}
@@ -34,7 +34,7 @@ export default function Footer() {
 					paddingBottom: '2%',
 				}}
 			>
-				<Col>
+				<Col className="d-inline-flex">
 					<ul
 						style={{
 							marginBottom: 0,
