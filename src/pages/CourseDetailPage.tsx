@@ -1,13 +1,9 @@
-import { NavLink, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { ClipLoader } from 'react-spinners'
-import axios from 'axios'
 
-import { StarFilled } from '@ant-design/icons'
-import { Button, Col, Container, Modal, Row } from 'react-bootstrap'
+import { Button, Col, Container, Row } from 'react-bootstrap'
 import { useAppSelector } from '../redux/store'
 import client from '../client/axios'
-import Categories from '../components/uploaded_courses/Categories'
 import { Footer, Navbar } from '../containers'
 import CourseInfo from '../containers/detail/CourseInfo'
 import CoverImage from '../components/detail/CoverImage'
@@ -38,6 +34,7 @@ export default function CourseDetailPage() {
 		popular: number
 		updated_at: string
 		is_bought: boolean
+		sections: Section[]
 	}
 	interface Course {
 		count: number
@@ -47,23 +44,14 @@ export default function CourseDetailPage() {
 	const [related_courses, setRelatedCourses] = useState<CourseResult[]>([])
 
 	const { course_id } = useParams()
-	const [sections, setSections] = useState<Section[]>([])
-	const [loading, setLoading] = useState(false)
-	const [fetching, setFetching] = useState(false)
 
 	const [show, setShow] = useState(false)
 	const navigate = useNavigate()
 	const handleClose = () => setShow(false)
 	const handleShow = () => setShow(true)
 	const user = useAppSelector((state) => state.user)
-	const user_uuid = user.account?.uuid
 	useEffect(() => {
 		async function fetchCategory() {
-			setLoading(true)
-			setTimeout(() => {
-				setLoading(false)
-			}, 500)
-			setFetching(true)
 			client
 				.get<CourseResult>(`/course/${course_id}`)
 				.then((respone) => {
@@ -82,104 +70,78 @@ export default function CourseDetailPage() {
 						}
 					}
 				})
-			client
-				.get<Section[]>(
-					`/sections?course=${course_id}&ordering=sectionNum`
-				)
-				.then((response) => {
-					setSections(response.data)
-				})
-				.then(() => {
-					setFetching(false)
-				})
 		}
 		fetchCategory()
 	}, [course_id])
-	if (loading || fetching)
-		return (
-			<div className="d-flex justify-content-center align-items-center vh-100">
-				<ClipLoader
-					color="#FF6783"
-					size={50}
-					aria-label="Loading Spinner"
-					data-testid="loader"
-				/>
-			</div>
-		)
-	else
-		return (
-			<div
-				style={{
-					display: 'flex',
-					flexDirection: 'column',
-				}}
-			>
-				<Navbar />
-				<Container fluid className="px-0" style={{ flex: 1 }}>
-					<CoverImage cover_image={course?.cover_image} />
-					<Container>
-						<CourseInfo
-							name={course?.name}
-							tutor={`${course?.tutor.first_name} ${course?.tutor.last_name}`}
-							categories={course?.categories}
-							rate={course?.rate}
-							tutees={course?.popular}
-							updated_at={course?.updated_at}
-						/>
-						<Row className="py-4">
-							<Col className="d-flex flex-row align-items-center">
-								<div className="fw-bolder fs-5 px-1">
-									Price:{' '}
-								</div>
-								<div className="px-3 fs-5">
-									{course?.price} $
-								</div>
+	return (
+		<div
+			style={{
+				display: 'flex',
+				flexDirection: 'column',
+			}}
+		>
+			<Navbar />
+			<Container fluid className="px-0" style={{ flex: 1 }}>
+				<CoverImage cover_image={course?.cover_image} />
+				<Container>
+					<CourseInfo
+						name={course?.name}
+						tutor={`${course?.tutor.first_name} ${course?.tutor.last_name}`}
+						categories={course?.categories}
+						rate={course?.rate}
+						tutees={course?.popular}
+						updated_at={course?.updated_at}
+					/>
+					<Row className="py-4">
+						<Col className="d-flex flex-row align-items-center">
+							<div className="fw-bolder fs-5 px-1">Price: </div>
+							<div className="px-3 fs-5">{course?.price} $</div>
+						</Col>
+						{course?.is_bought ? (
+							<Col>
+								<Button
+									onClick={() =>
+										navigate(
+											`/user/boughtCourses/${course.uuid}`
+										)
+									}
+								>
+									{' '}
+									Learn now{' '}
+								</Button>
 							</Col>
-							{course?.is_bought ? (
-								<Col>
-									<Button
-										onClick={() =>
-											navigate(
-												`/user/boughtCourses/${course.uuid}`
-											)
-										}
-									>
-										{' '}
-										Learn now{' '}
-									</Button>
-								</Col>
-							) : (
-								<BuyCourse
-									show={show}
-									handleShow={handleShow}
-									handleClose={handleClose}
-									course_id={course_id}
-								/>
-							)}
-						</Row>
-						<Row className="my-2 justify-content-between">
-							<Col className="col-sm-8">
-								<Container className="py-3">
-									<div className="fw-bolder fs-3">
-										About This Class
-									</div>
-									<div
-										className="fw-bolder fs-5 py-3"
-										style={{
-											whiteSpace: 'pre-line',
-											textAlign: 'justify',
-										}}
-									>
-										{course?.description}
-									</div>
-								</Container>
-							</Col>
-							<RelatedCourse courses={related_courses} />
-						</Row>
-						<br />
-					</Container>
+						) : (
+							<BuyCourse
+								show={show}
+								handleShow={handleShow}
+								handleClose={handleClose}
+								course_id={course_id}
+							/>
+						)}
+					</Row>
+					<Row className="my-2 justify-content-between">
+						<Col className="col-sm-8">
+							<Container className="py-3">
+								<div className="fw-bolder fs-3">
+									About This Class
+								</div>
+								<div
+									className="fw-bolder fs-5 py-3"
+									style={{
+										whiteSpace: 'pre-line',
+										textAlign: 'justify',
+									}}
+								>
+									{course?.description}
+								</div>
+							</Container>
+						</Col>
+						<RelatedCourse courses={related_courses} />
+					</Row>
+					<br />
 				</Container>
-				<Footer />
-			</div>
-		)
+			</Container>
+			<Footer />
+		</div>
+	)
 }

@@ -5,10 +5,11 @@ import client from '../../client/axios'
 import { RcFile } from 'antd/es/upload'
 import { useAppSelector } from '../../redux/store'
 import { ClipLoader } from 'react-spinners'
-import axios from 'axios'
-import { PlusOutlined, MinusCircleOutlined } from '@ant-design/icons'
+import { FileFilled, MinusCircleOutlined } from '@ant-design/icons'
 import DynamicAddSection from '../../components/uploaded_courses/DynamicAddSection'
 import Categories from '../../components/uploaded_courses/Categories'
+import { Button as ButtonA } from 'antd'
+
 export default function UploadCourse() {
 	interface Category {
 		uuid: String
@@ -92,20 +93,7 @@ export default function UploadCourse() {
 		}
 		fetchCategory()
 	}, [])
-	const downloadFile = (index: any) => {
-		axios({
-			url: old_sections[index].document,
-			method: 'GET',
-			responseType: 'blob',
-		}).then((response) => {
-			const url = window.URL.createObjectURL(new Blob([response.data]))
-			const link = document.createElement('a')
-			link.href = url
-			link.setAttribute('download', old_sections[index].document_name)
-			document.body.appendChild(link)
-			link.click()
-		})
-	}
+
 	const onFinish = (values: any) => {
 		const sections_uuid = values.old_sections.map(
 			(section: any) => section.uuid
@@ -215,7 +203,11 @@ export default function UploadCourse() {
 					</Form.Item>
 					<Form.Item label="Cover Image">
 						<div>
-							<img src={course?.cover_image} alt="cover_image" />
+							<img
+								src={course?.cover_image}
+								alt="cover_image"
+								style={{ width: '300px', height: '200px' }}
+							/>
 						</div>
 					</Form.Item>
 					<Form.Item
@@ -284,17 +276,29 @@ export default function UploadCourse() {
 												</video>
 											</Form.Item>
 											<Form.Item label="Document">
-												<a
-													onClick={() =>
-														downloadFile(index)
-													}
-													style={{ color: 'blue' }}
-												>
-													{
+												<ButtonA
+													type="link"
+													href={
 														old_sections[index]
-															.document_name
+															.document
 													}
-												</a>
+													style={{
+														textDecoration: 'none',
+													}}
+													icon={
+														<div className="d-inline-flex flex-row align-items-center">
+															<FileFilled />
+															<div className="px-3">
+																{
+																	old_sections[
+																		index
+																	]
+																		?.document_name
+																}
+															</div>
+														</div>
+													}
+												></ButtonA>
 											</Form.Item>
 											<MinusCircleOutlined
 												style={{

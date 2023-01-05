@@ -1,14 +1,12 @@
-import { NavLink, useNavigate, useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 import client from '../../client/axios'
-import { useAppSelector } from '../../redux/store'
 import { ClipLoader } from 'react-spinners'
-import axios from 'axios'
 import { Image } from 'antd'
 import Categories from '../../components/uploaded_courses/Categories'
 import { StarFilled } from '@ant-design/icons'
-import { Button, Col, Container, Row } from 'react-bootstrap'
+import { Col, Container } from 'react-bootstrap'
 import ListSection from '../../components/uploaded_courses/ListSection'
 export default function BoughtCourseDetail() {
 	interface Section {
@@ -35,9 +33,6 @@ export default function BoughtCourseDetail() {
 		updated_at: string
 	}
 	const [course, setCourse] = useState<Course>()
-	const navigate = useNavigate()
-	const account = useAppSelector((state) => state.user.account)
-	const user_uuid = account?.uuid
 	const { course_id } = useParams()
 	const [sections, setSections] = useState<Section[]>([])
 	const [loading, setLoading] = useState(false)
