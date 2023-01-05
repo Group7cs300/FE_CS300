@@ -106,8 +106,7 @@ export default function CourseDetailPage() {
 										)
 									}
 								>
-									{' '}
-									Learn now{' '}
+									Learn now
 								</Button>
 							</Col>
 						) : (

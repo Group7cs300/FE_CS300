@@ -25,6 +25,8 @@ export default function SignUpForm() {
 		client
 			.post<User>('/app/account/sign_up', {
 				username: values.username,
+				first_name: values.firstname,
+				last_name: values.lastname,
 				password: values.password,
 				email: values.email,
 			})

@@ -30,12 +30,12 @@ export default function CoursesPage() {
 				return (
 					String(date.getFullYear()) +
 					'-' +
-					String(date.getMonth()+1) +
+					String(date.getMonth() + 1) +
 					'-' +
 					String(Number(date.getDate()) - 7)
 				)
 			else {
-				if (Number(date.getMonth()+1) == 1)
+				if (Number(date.getMonth() + 1) == 1)
 					return (
 						String(date.getFullYear() - 1) +
 						'-12-' +

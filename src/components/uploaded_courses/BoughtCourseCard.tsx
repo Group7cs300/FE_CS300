@@ -1,13 +1,13 @@
 import { Card } from 'react-bootstrap'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../../redux/store'
-
+import { StarFilled } from '@ant-design/icons'
 export default function BoughtCourseCard({ props, course, edit }: any) {
 	const account = useAppSelector((state) => state.user.account)
 	return (
 		<NavLink
 			style={{ textDecoration: 'none', color: '#022233' }}
-			to={'`/user/boughtCourses/${course.uuid}`'}
+			to={`/user/boughtCourses/${course.uuid}`}
 		>
 			<Card
 				style={{
@@ -30,9 +30,11 @@ export default function BoughtCourseCard({ props, course, edit }: any) {
 						<div className="fw-light fs-6 px-3">
 							{course.popular} tutees
 						</div>
-						<div className="ml-auto fw-light fs-6 p-1 px-3">
-							{' '}
-							Rate {course.rate}/5
+						<div className="d-flex flex-row align-items-center px-3">
+							<StarFilled style={{ color: '#FDDA0D' }} />
+							<div className="px-1">
+								{Math.round(Number(course.rate) * 10) / 10}
+							</div>
 						</div>
 					</Card.Body>
 				</div>
