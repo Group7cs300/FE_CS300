@@ -32,7 +32,7 @@ export default function BoughtCoursesGrid() {
 	}, [])
 	return (
 		<div className="col m-4">
-			<li className="w-bold fs-2 py-4 px-4">Uploaded Courses</li>
+			<li className="w-bold fs-2 py-4 px-4">Bought Courses</li>
 			{courses.map((course: any) => (
 				<Row className="p-3" key={course.name}>
 					<BoughtCourseCard course={course} />
