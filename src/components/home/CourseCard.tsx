@@ -1,16 +1,20 @@
 import { Card } from 'react-bootstrap'
+import { Link, NavLink } from 'react-router-dom'
+import { Course } from '../../constants/types'
 
-export default function CourseCard() {
+interface CourseCardProps {
+	course: Course
+}
+
+export default function CourseCard({ course }: CourseCardProps) {
 	return (
-		<Card className='rounded m-3'>
-			<Card.Img src="/home/python.png" />
-			<Card.Body>
-				<Card.Text>
-					Python for Beginer: Learn the Python programming language
-					and the fundamentals of Python
-				</Card.Text>
-				<Card.Footer>Tutor</Card.Footer>
-			</Card.Body>
-		</Card>
+			<Card as={NavLink} to={`/course/${course.uuid}`} style={{ textDecoration: 'none' }} className="rounded text-dark">
+				<Card.Img width={300} height={300} src={course.cover_image} />
+				<Card.Header>{course.name}</Card.Header>
+				<Card.Body>
+					<Card.Text>{course.description}</Card.Text>
+					<Card.Footer>{course.tutor.username}</Card.Footer>
+				</Card.Body>
+			</Card>
 	)
 }
