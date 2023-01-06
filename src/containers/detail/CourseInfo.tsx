@@ -1,10 +1,9 @@
 import Star from '../../components/detail/Rate'
 
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 import Categories from '../../components/uploaded_courses/Categories'
 
 export default function CourseInfo({
-	props,
 	name,
 	categories,
 	tutor,

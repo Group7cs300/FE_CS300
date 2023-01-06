@@ -23,3 +23,18 @@ export interface Pagination<T> {
 	count: number,
 	results: T[]
 }
+
+export interface Category {
+	name: string
+	creater: Account
+	created_by_system: boolean
+}
+
+export interface Course {
+	uuid: string
+	name: string
+	price: number
+	tutor: Account
+	cover_image: string
+	description: string
+}

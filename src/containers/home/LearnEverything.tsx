@@ -1,7 +1,10 @@
-import { Container } from 'react-bootstrap'
+import { useState } from 'react'
 import { PopularCategories, PopularCourses } from '../../components'
+import { Category } from '../../constants/types'
 
 export default function LearnEverything() {
+	const [category, setCategory] = useState<Category|undefined>(undefined)
+
 	return (
 		<div
 			className="learn_everything"
@@ -10,8 +13,6 @@ export default function LearnEverything() {
 				flexDirection: 'column',
 				justifyContent: 'center',
 				alignItems: 'center',
-				marginTop: 30,
-				marginBottom: 100,
 			}}
 		>
 			<h1
@@ -22,8 +23,8 @@ export default function LearnEverything() {
 			>
 				Learn Everything You Need
 			</h1>
-			<PopularCategories />
-			<PopularCourses />
+			<PopularCategories category={category} setCategory={setCategory}/>
+			<PopularCourses category={category} />
 		</div>
 	)
 }
