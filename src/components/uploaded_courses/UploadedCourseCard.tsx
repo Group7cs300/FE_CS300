@@ -1,10 +1,11 @@
 import { Button, Card } from 'react-bootstrap'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../../redux/store'
-
-export default function UploadedCourseCard({ props, course,edit }: any) {
-    const navigate = useNavigate()
-    const account = useAppSelector((state) => state.user.account)
+import { EditOutlined } from '@ant-design/icons'
+import { StarFilled } from '@ant-design/icons'
+export default function UploadedCourseCard({ props, course, edit }: any) {
+	const navigate = useNavigate()
+	const account = useAppSelector((state) => state.user.account)
 	const user_uuid = account?.uuid
 	return (
 		<Card
@@ -16,14 +17,11 @@ export default function UploadedCourseCard({ props, course,edit }: any) {
 			<div className="row no-gutters">
 				<div className="col-md-4 p-0">
 					<Card.Img
-						style={{ height: '100%', borderRadius: 10 }}
+						style={{ height: '200px', borderRadius: 10 }}
 						src={course.cover_image}
 					/>
 				</div>
-				<Card.Body
-					className="col-md-8 d-flex align-items-start flex-column p-0"
-					
-				>
+				<Card.Body className="col-md-8 d-flex align-items-start flex-column p-0">
 					<div className="fw-bold fs-5 px-3">{course.name}</div>
 					<div className="ml-auto fw-normal fs-6 p-1 px-3">
 						{course.tutor.username}
@@ -31,12 +29,23 @@ export default function UploadedCourseCard({ props, course,edit }: any) {
 					<div className="fw-light fs-6 px-3">
 						{course.popular} tutees
 					</div>
-					<div className="ml-auto fw-light fs-6 p-1 px-3">
-						{' '}
-						Rate {course.rate}/5
+					<div className="d-flex flex-row align-items-center px-3">
+						<StarFilled style={{ color: '#FDDA0D' }} />
+						<div className="px-1">
+							{Math.round(Number(course.rate) * 10) / 10}
+						</div>
 					</div>
 					<div className="align-self-end mt-auto">
-						<Button className="m-3" onClick={() => navigate(`/user/uploadedCourses/${course.uuid}`)}>Edit</Button>
+						<Button
+							variant="secondary"
+							className="m-3 d-inline-flex flex-row align-items-center"
+							onClick={() =>
+								navigate(`/user/uploadedCourses/${course.uuid}`)
+							}
+						>
+							<EditOutlined />
+							<div className="px-3">Edit</div>
+						</Button>
 					</div>
 				</Card.Body>
 			</div>

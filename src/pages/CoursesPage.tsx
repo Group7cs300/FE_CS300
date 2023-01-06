@@ -26,7 +26,7 @@ export default function CoursesPage() {
 	function getDateFilter(date_filter: any) {
 		if (date_filter == 'All') return ''
 		if (date_filter == 'In this week')
-			if (Number(date.getDate()) > 7)
+			if (Number(date.getDate()) > 8)
 				return (
 					String(date.getFullYear()) +
 					'-' +
@@ -34,14 +34,27 @@ export default function CoursesPage() {
 					'-' +
 					String(Number(date.getDate()) - 7)
 				)
-			else
-				return (
-					String(date.getFullYear()) +
-					'-' +
-					String(date.getMonth()) +
-					'-' +
-					String(30 + Number(date.getDate()) - Number(date.getDay()))
-				)
+			else {
+				if (Number(date.getMonth() + 1) == 1)
+					return (
+						String(date.getFullYear() - 1) +
+						'-12-' +
+						String(
+							30 + Number(date.getDate()) - Number(date.getDay())
+						)
+					)
+				else
+					return (
+						String(date.getFullYear()) +
+						'-' +
+						String(date.getMonth()) +
+						'-' +
+						String(
+							30 + Number(date.getDate()) - Number(date.getDay())
+						)
+					)
+			}
+
 		if (date_filter == 'In this month')
 			return (
 				String(date.getFullYear()) +
@@ -91,7 +104,7 @@ export default function CoursesPage() {
 					`/course?name=${search_text}&page=${page}&limit=9&ordering=${getTypeSort(
 						currentSort,
 						sort_direction
-					)}&updated_at__gt=${getDateFilter(date_filter)}`
+					)}&created_at__gt=${getDateFilter(date_filter)}`
 				)
 				.then((response) => {
 					setCount(response.data.count)

@@ -171,6 +171,7 @@ export default function UploadCourse() {
 							setFiles={setCoverImage}
 							id={1}
 							setIsUpload={setIsUpload}
+							accept="image/*"
 							button={
 								<div>
 									<PlusOutlined />

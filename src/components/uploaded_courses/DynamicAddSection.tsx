@@ -1,8 +1,5 @@
 import { Button, Form, Input, Space } from 'antd'
-import {
-	PlusOutlined,
-	MinusCircleOutlined,
-} from '@ant-design/icons'
+import { PlusOutlined, MinusCircleOutlined } from '@ant-design/icons'
 import { useState } from 'react'
 import TextArea from 'antd/es/input/TextArea'
 import UploadFile from './UploadFile'
@@ -16,20 +13,20 @@ export default function DynamicAddSection({
 }: any) {
 	interface File {
 		file: RcFile[]
-		id : number
+		id: number
 	}
 	interface SectionFile {
 		document: RcFile[]
-		video : RcFile[]
+		video: RcFile[]
 	}
 	const [isUploadDocument, setIsUploadDocument] = useState(true)
 	const [isUploadVideo, setIsUploadVideo] = useState(true)
-	const addDocument = (document: File) =>{
+	const addDocument = (document: File) => {
 		let temp: SectionFile[] = sectionsFile
 		temp[document.id].document = document.file
 		setSectionsFile(temp)
 	}
-	const addVideo = (video : File) =>{
+	const addVideo = (video: File) => {
 		let temp: SectionFile[] = sectionsFile
 		temp[video.id].video = video.file
 		setSectionsFile(temp)
@@ -53,7 +50,8 @@ export default function DynamicAddSection({
 									rules={[
 										{
 											required: true,
-											message: 'Please input name of section',
+											message:
+												'Please input name of section',
 										},
 									]}
 								>
@@ -71,7 +69,7 @@ export default function DynamicAddSection({
 								<Form.Item
 									label="Video"
 									valuePropName="fileList"
-									name='video'
+									name="video"
 									rules={[
 										{
 											required: isUploadVideo,
@@ -82,13 +80,14 @@ export default function DynamicAddSection({
 									<UploadFile
 										type="picture-card"
 										setFiles={addVideo}
-										id = {index+1}
+										id={index + 1}
 										setIsUpload={setIsUploadVideo}
+										accept="video/*"
 										button={
 											<div>
 												<PlusOutlined />
 												<div style={{ marginTop: 8 }}>
-												Upload
+													Upload
 												</div>
 											</div>
 										}
@@ -97,7 +96,7 @@ export default function DynamicAddSection({
 								<Form.Item
 									label="Document"
 									valuePropName="fileList"
-									name='document'
+									name="document"
 									rules={[
 										{
 											required: isUploadDocument,
@@ -108,8 +107,9 @@ export default function DynamicAddSection({
 									<UploadFile
 										type="picture-card"
 										setFiles={addDocument}
-										id={index+1}
+										id={index + 1}
 										setIsUpload={setIsUploadDocument}
+										accept="application/pdf"
 										button={
 											<div>
 												<PlusOutlined />
@@ -127,8 +127,8 @@ export default function DynamicAddSection({
 									}}
 									onClick={() => {
 										remove(field.name)
-										let temp:SectionFile[] = sectionsFile
-										temp.splice(index,1)
+										let temp: SectionFile[] = sectionsFile
+										temp.splice(index, 1)
 										setSectionsFile(temp)
 									}}
 								/>
@@ -143,8 +143,8 @@ export default function DynamicAddSection({
 							block
 							onClick={() => {
 								add()
-								let temp:SectionFile[] = sectionsFile
-								temp.push({document:[],video:[]})
+								let temp: SectionFile[] = sectionsFile
+								temp.push({ document: [], video: [] })
 								setSectionsFile(temp)
 							}}
 						>

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import { Button, Col, Container, Row } from 'react-bootstrap'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Button, Row } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 import client from '../../client/axios'
 import UploadedCourseCard from '../../components/uploaded_courses/UploadedCourseCard'
 import { useAppSelector } from '../../redux/store'
-
+import { PlusOutlined } from '@ant-design/icons'
 export default function UploadedCourseGrid() {
 	interface Course {
 		uuid: string
@@ -38,11 +38,11 @@ export default function UploadedCourseGrid() {
 		<div className="col m-4">
 			<li className="w-bold fs-2 py-4 px-4">Uploaded Courses</li>
 			<Button
-				className="m-3"
+				className="m-3 d-inline-flex flex-row align-items-center"
 				onClick={() => navigate(`/user/uploadedCourses/add`)}
 			>
-				{' '}
-				New course
+				<PlusOutlined />
+				<div className="px-3">New course</div>
 			</Button>
 			{courses.map((course: any) => (
 				<Row className="p-3" key={course.uuid}>
