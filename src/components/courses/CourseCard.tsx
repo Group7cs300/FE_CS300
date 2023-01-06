@@ -1,15 +1,17 @@
 import { Card } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
-export default function CourseCard({ props, course }: any) {
-	const navigate = useNavigate()
+export default function CourseCard({ course }: any) {
 	return (
 		<Card
 			style={{
 				borderRadius: 10,
 				height: '300px',
+				textDecoration: 'none',
 			}}
-			onClick={() => navigate(`/Course/${course.uuid}`)}
+			as={NavLink}
+			to={`/course/${course.uuid}`}
+			className="text-dark"
 		>
 			<Card.Img style={{ height: '150px' }} src={course.cover_image} />
 			<Card.Body className="p-0">

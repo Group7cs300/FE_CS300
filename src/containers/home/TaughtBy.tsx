@@ -47,7 +47,7 @@ export default function TaughtBy() {
 				<Col xs={8}>
 					<Image
 						src="/home/tutor.jpeg"
-						width="100%"
+						width="90%"
 						style={{
 							borderRadius: 40,
 						}}
