@@ -1,24 +1,18 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import client from '../../client/axios'
+import { Dispatch, SetStateAction } from 'react'
 import { Category } from '../../constants/types'
 
 interface PopularCategoriesProps {
 	category: Category | undefined
 	setCategory: Dispatch<SetStateAction<Category | undefined>>
+	categories:Category[]
 }
 
 export default function PopularCategories({
 	category,
 	setCategory,
+	categories,
 }: PopularCategoriesProps) {
-	const [categories, setCategories] = useState<Category[]>([])
-
-	useEffect(() => {
-		client.get<Category[]>('/categories/popular').then((response) => {
-			setCategories(response.data)
-			setCategory(response.data[0])
-		})
-	}, [])
+	
 
 	return (
 		<div
@@ -40,6 +34,7 @@ export default function PopularCategories({
 						fontSize: 20,
 						marginBottom: 0,
 					}}
+					onClick={()=>setCategory(cat)}
 				>
 					{cat.name}
 				</div>
