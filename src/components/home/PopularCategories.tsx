@@ -1,10 +1,11 @@
+import { Button } from 'antd'
 import { Dispatch, SetStateAction } from 'react'
 import { Category } from '../../constants/types'
 
 interface PopularCategoriesProps {
 	category: Category | undefined
 	setCategory: Dispatch<SetStateAction<Category | undefined>>
-	categories:Category[]
+	categories: Category[]
 }
 
 export default function PopularCategories({
@@ -12,32 +13,22 @@ export default function PopularCategories({
 	setCategory,
 	categories,
 }: PopularCategoriesProps) {
-	
-
 	return (
-		<div
-			style={{
-				display: 'flex',
-				flexDirection: 'row',
-				justifyContent: 'center',
-				alignItems: 'center',
-				width: '70%',
-				marginBottom: 30
-			}}
-		>
+		<div className="d-flex justify-content-center align-items-center my-3 w-75">
 			{categories.map((cat) => (
-				<div
+				<Button
+					size="large"
+					type="text"
 					key={cat.name}
 					style={{
-						margin: '25px 40px',
-						borderBottom: cat!==category ? undefined : 'solid 3px #1a049e',
+						borderBottom:
+							cat !== category ? undefined : 'solid 3px #1a049e',
 						fontSize: 20,
-						marginBottom: 0,
 					}}
-					onClick={()=>setCategory(cat)}
+					onClick={() => setCategory(cat)}
 				>
 					{cat.name}
-				</div>
+				</Button>
 			))}
 		</div>
 	)
