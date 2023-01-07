@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Carousel, Col, Container, Row } from 'react-bootstrap'
 import client from '../../client/axios'
 import { Category, Course } from '../../constants/types'
-import CourseCard from './CourseCard'
+import CourseCard from '../courses/CourseCard'
 
 interface PopularCoursesProps {
 	category: Category | undefined
@@ -14,7 +14,7 @@ export default function PopularCourses({ category }: PopularCoursesProps) {
 
 	useEffect(() => {
 		client
-			.get<{ results: Course[] }>('/course/popular')
+			.get<{ results: Course[] }>(`/course/popular?category=${category?.uuid}`)
 			.then((response) => {
 				setCourses(response.data.results)
 			})
@@ -34,7 +34,7 @@ export default function PopularCourses({ category }: PopularCoursesProps) {
 					<Carousel.Item key={row_index}>
 						<Row xs={3} className="p-5">
 							{row.map((course) => (
-								<Col key={course.uuid}>
+								<Col key={course.uuid} className='col-sm-4 px-5'>
 									<CourseCard course={course} />
 								</Col>
 							))}

@@ -1,10 +1,18 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import client from '../../client/axios'
 import { PopularCategories, PopularCourses } from '../../components'
 import { Category } from '../../constants/types'
 
 export default function LearnEverything() {
 	const [category, setCategory] = useState<Category|undefined>(undefined)
+	const [categories, setCategories] = useState<Category[]>([])
 
+	useEffect(() => {
+		client.get<Category[]>('/categories?created_by_system=true').then((response) => {
+			setCategories(response.data)
+			setCategory(response.data[0])
+		})
+	}, [])
 	return (
 		<div
 			className="learn_everything"
@@ -23,8 +31,8 @@ export default function LearnEverything() {
 			>
 				Learn Everything You Need
 			</h1>
-			<PopularCategories category={category} setCategory={setCategory}/>
-			<PopularCourses category={category} />
+			<PopularCategories categories={categories} category={category} setCategory={setCategory}/>
+			{category!= undefined && <PopularCourses category={category} />}
 		</div>
 	)
 }

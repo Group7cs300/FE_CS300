@@ -25,6 +25,7 @@ export interface Pagination<T> {
 }
 
 export interface Category {
+	uuid:string
 	name: string
 	creater: Account
 	created_by_system: boolean
